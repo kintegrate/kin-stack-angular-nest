@@ -1,10 +1,19 @@
 import { Injectable } from '@angular/core'
 import { Network, UserCreateWalletInput, Wallet, WebCoreDataAccessService } from '@kin-nxpm-stack/web/core/data-access'
+import { environment } from '@kin-nxpm-stack/web/core/feature'
 import { KinClient, KinProd, KinTest } from '@kin-sdk/client'
+import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-client'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
 import { defer } from 'rxjs'
-import { switchMap, tap } from 'rxjs/operators'
+import { mergeMap, switchMap, tap } from 'rxjs/operators'
 import * as SecureLS from 'secure-ls'
+
+export interface SendKinInput {
+  wallet: Wallet
+  balance: KinAccountBalance
+  destination: string
+  amount: string
+}
 
 interface WebWalletDataAccessState {
   error?: any
@@ -17,8 +26,8 @@ interface WebWalletDataAccessState {
 export class WebWalletDataAccessStore extends ComponentStore<WebWalletDataAccessState> {
   readonly ls = new SecureLS({ encodingType: 'aes' })
   readonly networks = {
-    [Network.KinMainnet]: new KinClient(KinProd, { appIndex: 226 }),
-    [Network.KinTestnet]: new KinClient(KinTest, { appIndex: 226 }),
+    [Network.KinMainnet]: new KinClient(KinProd, { appIndex: environment.kinAppIndex }),
+    [Network.KinTestnet]: new KinClient(KinTest, { appIndex: environment.kinAppIndex }),
   }
 
   constructor(private readonly data: WebCoreDataAccessService) {
@@ -46,8 +55,7 @@ export class WebWalletDataAccessStore extends ComponentStore<WebWalletDataAccess
           tapResponse(
             (res) => {
               const wallets = res.data.items.filter((item) => this.ls.getAllKeys().includes(item.publicKey))
-              wallets.forEach((wallet) => this.loadBalancesEffect(wallet))
-              this.patchState({ wallets, loading: true })
+              this.patchState({ wallets, loading: false })
             },
             (error) => this.patchState({ error, loading: false }),
           ),
@@ -72,7 +80,7 @@ export class WebWalletDataAccessStore extends ComponentStore<WebWalletDataAccess
   readonly storeWalletKeysEffect = this.effect<[Network, string, string]>((keys$) =>
     keys$.pipe(
       tap(([, publicKey, secret]) => this.ls.set(publicKey, secret)),
-      switchMap(([network, , secret]) =>
+      mergeMap(([network, , secret]) =>
         defer(() => this.kin(network).createAccount(secret)).pipe(
           tapResponse(
             (res) => {
@@ -87,16 +95,28 @@ export class WebWalletDataAccessStore extends ComponentStore<WebWalletDataAccess
     ),
   )
 
-  readonly loadBalancesEffect = this.effect<Wallet>(($) =>
-    $.pipe(
-      switchMap((wallet) =>
-        defer(() => this.kin(wallet.network).getBalances(wallet.publicKey)).pipe(
+  readonly sendKinEffect = this.effect<SendKinInput>((input$) =>
+    input$.pipe(
+      tap((input) => {
+        console.log('input', input)
+      }),
+      switchMap(({ wallet, balance, amount, destination }) =>
+        defer(() => {
+          const secret = this.ls.get(wallet.publicKey)
+          return this.kin(wallet.network).submitPayment({
+            secret,
+            tokenAccount: balance.account,
+            amount,
+            destination,
+          })
+        }).pipe(
           tapResponse(
-            (res) => {
-              console.log('res', wallet.publicKey, res)
+            ([tx, err]) => {
+              console.log('err', err)
+              console.log('tx', tx)
             },
-            (error) => {
-              console.error('error', wallet.publicKey, error)
+            (err) => {
+              console.log(err)
             },
           ),
         ),

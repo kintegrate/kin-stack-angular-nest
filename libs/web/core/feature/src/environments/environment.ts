@@ -9,6 +9,7 @@ export const environment = {
   graphql: '/graphql',
   production: false,
   defaultNetwork: Network.KinTestnet,
+  kinAppIndex: 198,
 }
 
 /*

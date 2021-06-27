@@ -245,6 +245,27 @@
         }
       }
     },
+    "api-integration-kin": {
+      "root": "libs/api/integration/kin",
+      "sourceRoot": "libs/api/integration/kin/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/integration/kin/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/integration/kin"],
+          "options": {
+            "jestConfig": "libs/api/integration/kin/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "api-user-data-access": {
       "root": "libs/api/user/data-access",
       "sourceRoot": "libs/api/user/data-access/src",

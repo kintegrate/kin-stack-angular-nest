@@ -5,4 +5,5 @@ export const environment = {
   graphql: '/graphql',
   production: true,
   defaultNetwork: Network.KinMainnet,
+  kinAppIndex: 198,
 }

@@ -1,12 +1,13 @@
 import { GraphQLIntercomModule } from '@kikstart-playground/graphql-intercom'
+import { ApiAccountFeatureModule } from '@kin-nxpm-stack/api/account/feature'
+import { ApiAuthFeatureModule } from '@kin-nxpm-stack/api/auth/feature'
+import { ApiIntegrationKinModule } from '@kin-nxpm-stack/api/integration/kin'
+import { ApiUserFeatureModule } from '@kin-nxpm-stack/api/user/feature'
+import { ApiWalletFeatureModule } from '@kin-nxpm-stack/api/wallet/feature'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { PubSub } from 'graphql-subscriptions'
 import { join } from 'path'
-import { ApiAccountFeatureModule } from '@kin-nxpm-stack/api/account/feature'
-import { ApiAuthFeatureModule } from '@kin-nxpm-stack/api/auth/feature'
-import { ApiUserFeatureModule } from '@kin-nxpm-stack/api/user/feature'
-import { ApiWalletFeatureModule } from '@kin-nxpm-stack/api/wallet/feature'
 
 import { ApiCoreFeatureController } from './api-core-feature.controller'
 import { ApiCoreFeatureResolver } from './api-core-feature.resolver'
@@ -28,6 +29,7 @@ import { ApiCoreFeatureService } from './api-core-feature.service'
     GraphQLIntercomModule.forRoot({ pubSub: new PubSub() }),
     ApiAccountFeatureModule,
     ApiAuthFeatureModule,
+    ApiIntegrationKinModule,
     ApiUserFeatureModule,
     ApiWalletFeatureModule,
   ],

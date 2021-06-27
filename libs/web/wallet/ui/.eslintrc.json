@@ -9,11 +9,11 @@
       "rules": {
         "@angular-eslint/directive-selector": [
           "error",
-          { "type": "attribute", "prefix": "wallet", "style": "camelCase" }
+          { "type": "attribute", "prefix": ["wallet", "web"], "style": "camelCase" }
         ],
         "@angular-eslint/component-selector": [
           "error",
-          { "type": "element", "prefix": "wallet", "style": "kebab-case" }
+          { "type": "element", "prefix": ["wallet", "web"], "style": "kebab-case" }
         ]
       }
     },

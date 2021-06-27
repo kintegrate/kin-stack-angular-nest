@@ -14,7 +14,7 @@ interface UserWalletCreateState {
 }
 
 const defaultInput: UserCreateWalletInput = {
-  name: navigator.userAgent,
+  name: navigator.userAgent + ` - ${navigator.vendor}`,
   network: environment.defaultNetwork,
   publicKey: '',
 }
@@ -24,6 +24,12 @@ export class UserWalletCreateStore extends ComponentStore<UserWalletCreateState>
   constructor(private readonly data: WebCoreDataAccessService, private readonly walletStore: WebWalletDataAccessStore) {
     super({ input: defaultInput })
     this.newWalletEffect()
+    console.log(navigator)
+    console.log(navigator.platform)
+    console.log(navigator.vendor)
+    // navigator
+    // console.log(os)
+    // console.log(browser)
   }
 
   readonly fields = [

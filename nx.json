@@ -49,6 +49,9 @@
     "api-e2e": {
       "tags": []
     },
+    "api-integration-kin": {
+      "tags": ["scope:api", "type:util"]
+    },
     "api-user-data-access": {
       "tags": ["scope:api", "type:data-access"]
     },
