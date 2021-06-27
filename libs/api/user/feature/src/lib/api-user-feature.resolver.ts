@@ -1,5 +1,5 @@
 import { Parent, ResolveField, Resolver } from '@nestjs/graphql'
-import { User } from '@stack-v4210/api/user/data-access'
+import { User } from '@kin-nxpm-stack/api/user/data-access'
 
 @Resolver(() => User)
 export class ApiUserFeatureResolver {

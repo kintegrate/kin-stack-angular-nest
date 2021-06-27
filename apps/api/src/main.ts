@@ -1,4 +1,4 @@
-import { ApiCoreUtilService } from '@stack-v4210/api/core/util'
+import { ApiCoreUtilService } from '@kin-nxpm-stack/api/core/util'
 import { Logger } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import * as cookieParser from 'cookie-parser'

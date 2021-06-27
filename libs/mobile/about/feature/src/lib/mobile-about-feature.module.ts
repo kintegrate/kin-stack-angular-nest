@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
-import { MobileUiPageModule } from '@stack-v4210/mobile/ui/page'
+import { MobileUiPageModule } from '@kin-nxpm-stack/mobile/ui/page'
 import { MobileAboutFeatureComponent } from './mobile-about-feature.component'
 
 @NgModule({

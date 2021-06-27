@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { WebCoreDataAccessService } from '@stack-v4210/web/core/data-access'
+import { WebCoreDataAccessService } from '@kin-nxpm-stack/web/core/data-access'
 import { map } from 'rxjs/operators'
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { MobileAuthStore } from '@stack-v4210/mobile/auth/data-access'
+import { MobileAuthStore } from '@kin-nxpm-stack/mobile/auth/data-access'
 
 @Component({
   template: `

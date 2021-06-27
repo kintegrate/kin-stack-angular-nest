@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { AccountUpdatePasswordInput } from '@stack-v4210/web/core/data-access'
+import { AccountUpdatePasswordInput } from '@kin-nxpm-stack/web/core/data-access'
 import { AccountPasswordStore } from './account-password.store'
 
 @Component({

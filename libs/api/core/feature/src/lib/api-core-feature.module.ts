@@ -3,9 +3,10 @@ import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { PubSub } from 'graphql-subscriptions'
 import { join } from 'path'
-import { ApiAccountFeatureModule } from '@stack-v4210/api/account/feature'
-import { ApiAuthFeatureModule } from '@stack-v4210/api/auth/feature'
-import { ApiUserFeatureModule } from '@stack-v4210/api/user/feature'
+import { ApiAccountFeatureModule } from '@kin-nxpm-stack/api/account/feature'
+import { ApiAuthFeatureModule } from '@kin-nxpm-stack/api/auth/feature'
+import { ApiUserFeatureModule } from '@kin-nxpm-stack/api/user/feature'
+import { ApiWalletFeatureModule } from '@kin-nxpm-stack/api/wallet/feature'
 
 import { ApiCoreFeatureController } from './api-core-feature.controller'
 import { ApiCoreFeatureResolver } from './api-core-feature.resolver'
@@ -28,6 +29,7 @@ import { ApiCoreFeatureService } from './api-core-feature.service'
     ApiAccountFeatureModule,
     ApiAuthFeatureModule,
     ApiUserFeatureModule,
+    ApiWalletFeatureModule,
   ],
   controllers: [ApiCoreFeatureController],
   providers: [ApiCoreFeatureResolver, ApiCoreFeatureService],

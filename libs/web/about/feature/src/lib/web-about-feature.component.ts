@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
-import { WebCoreDataAccessService } from '@stack-v4210/web/core/data-access'
-import { environment } from '@stack-v4210/web/core/feature'
+import { WebCoreDataAccessService } from '@kin-nxpm-stack/web/core/data-access'
+import { environment } from '@kin-nxpm-stack/web/core/feature'
 import { map } from 'rxjs/operators'
 
 @Component({

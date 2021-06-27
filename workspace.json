@@ -287,11 +287,53 @@
         }
       }
     },
+    "api-wallet-data-access": {
+      "root": "libs/api/wallet/data-access",
+      "sourceRoot": "libs/api/wallet/data-access/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/wallet/data-access/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/wallet/data-access"],
+          "options": {
+            "jestConfig": "libs/api/wallet/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-wallet-feature": {
+      "root": "libs/api/wallet/feature",
+      "sourceRoot": "libs/api/wallet/feature/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/wallet/feature/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/wallet/feature"],
+          "options": {
+            "jestConfig": "libs/api/wallet/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "mobile": {
       "projectType": "application",
       "root": "apps/mobile",
       "sourceRoot": "apps/mobile/src",
-      "prefix": "stack-v4210",
+      "prefix": "kin-nxpm-stack",
       "targets": {
         "build": {
           "executor": "@angular-devkit/build-angular:browser",
@@ -959,7 +1001,7 @@
       "projectType": "application",
       "root": "apps/web",
       "sourceRoot": "apps/web/src",
-      "prefix": "stack-v4210",
+      "prefix": "kin-nxpm-stack",
       "targets": {
         "build": {
           "executor": "@angular-builders/custom-webpack:browser",
@@ -1572,6 +1614,72 @@
           "outputs": ["coverage/libs/web/ui/toast"],
           "options": {
             "jestConfig": "libs/web/ui/toast/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "web-wallet-data-access": {
+      "projectType": "library",
+      "root": "libs/web/wallet/data-access",
+      "sourceRoot": "libs/web/wallet/data-access/src",
+      "prefix": "wallet",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/web/wallet/data-access/src/**/*.ts", "libs/web/wallet/data-access/src/**/*.html"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/wallet/data-access"],
+          "options": {
+            "jestConfig": "libs/web/wallet/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "web-wallet-feature": {
+      "projectType": "library",
+      "root": "libs/web/wallet/feature",
+      "sourceRoot": "libs/web/wallet/feature/src",
+      "prefix": "wallet",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/web/wallet/feature/src/**/*.ts", "libs/web/wallet/feature/src/**/*.html"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/wallet/feature"],
+          "options": {
+            "jestConfig": "libs/web/wallet/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "web-wallet-ui": {
+      "projectType": "library",
+      "root": "libs/web/wallet/ui",
+      "sourceRoot": "libs/web/wallet/ui/src",
+      "prefix": "wallet",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/web/wallet/ui/src/**/*.ts", "libs/web/wallet/ui/src/**/*.html"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/wallet/ui"],
+          "options": {
+            "jestConfig": "libs/web/wallet/ui/jest.config.js",
             "passWithNoTests": true
           }
         }

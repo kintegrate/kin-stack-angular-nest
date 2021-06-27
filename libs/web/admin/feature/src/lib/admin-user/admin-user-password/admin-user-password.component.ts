@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { WebUiFormField } from '@stack-v4210/web/ui/form'
+import { WebUiFormField } from '@kin-nxpm-stack/web/ui/form'
 import { AdminUserPasswordStore } from './admin-user-password.store'
 
 @Component({

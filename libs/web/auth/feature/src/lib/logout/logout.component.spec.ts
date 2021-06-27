@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { WebAuthStore } from '@stack-v4210/web/auth/data-access'
+import { WebAuthStore } from '@kin-nxpm-stack/web/auth/data-access'
 
 import { LogoutComponent } from './logout.component'
 

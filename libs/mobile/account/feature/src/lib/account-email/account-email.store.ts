@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
-import { AccountCreateEmailInput, MobileCoreDataAccessService, Email } from '@stack-v4210/mobile/core/data-access'
+import { AccountCreateEmailInput, MobileCoreDataAccessService, Email } from '@kin-nxpm-stack/mobile/core/data-access'
 import { delay, mergeMap, switchMap, tap } from 'rxjs/operators'
 
 interface AccountEmailState {

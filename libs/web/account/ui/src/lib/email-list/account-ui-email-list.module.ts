@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { WebUiIconModule } from '@stack-v4210/web/ui/icon'
+import { WebUiIconModule } from '@kin-nxpm-stack/web/ui/icon'
 import { AccountUiEmailListComponent } from './account-ui-email-list.component'
 
 @NgModule({

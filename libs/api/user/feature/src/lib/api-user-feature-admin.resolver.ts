@@ -5,9 +5,9 @@ import {
   AdminUpdateUserInput,
   ApiUserDataAccessService,
   User,
-} from '@stack-v4210/api/user/data-access'
-import { CorePaging, CorePagingInput } from '@stack-v4210/api/core/data-access'
-import { CtxUser, GqlAuthAdminGuard } from '@stack-v4210/api/auth/util'
+} from '@kin-nxpm-stack/api/user/data-access'
+import { CorePaging, CorePagingInput } from '@kin-nxpm-stack/api/core/data-access'
+import { CtxUser, GqlAuthAdminGuard } from '@kin-nxpm-stack/api/auth/util'
 
 @Resolver()
 @UseGuards(GqlAuthAdminGuard)

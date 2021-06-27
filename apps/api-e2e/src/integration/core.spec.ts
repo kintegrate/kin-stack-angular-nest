@@ -1,4 +1,4 @@
-import { AppModule } from '@stack-v4210/api-app-module'
+import { AppModule } from '@kin-nxpm-stack/api-app-module'
 import { Test, TestingModule } from '@nestjs/testing'
 import { INestApplication } from '@nestjs/common'
 import * as request from 'supertest'

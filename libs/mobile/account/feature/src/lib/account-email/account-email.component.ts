@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { AccountCreateEmailInput, Email } from '@stack-v4210/mobile/core/data-access'
+import { AccountCreateEmailInput, Email } from '@kin-nxpm-stack/mobile/core/data-access'
 import { AccountEmailStore } from './account-email.store'
 
 @Component({

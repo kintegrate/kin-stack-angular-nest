@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
-import { AdminCreateUserInput, Role } from '@stack-v4210/web/core/data-access'
-import { WebUiFormField } from '@stack-v4210/web/ui/form'
+import { AdminCreateUserInput, Role } from '@kin-nxpm-stack/web/core/data-access'
+import { WebUiFormField } from '@kin-nxpm-stack/web/ui/form'
 import { AdminUserCreateStore } from './admin-user-create.store'
 
 @Component({

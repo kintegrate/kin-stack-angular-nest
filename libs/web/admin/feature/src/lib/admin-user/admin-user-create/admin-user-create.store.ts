@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
-import { AdminCreateUserInput, WebCoreDataAccessService, User } from '@stack-v4210/web/core/data-access'
+import { AdminCreateUserInput, WebCoreDataAccessService, User } from '@kin-nxpm-stack/web/core/data-access'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
 import { switchMap, tap } from 'rxjs/operators'
 

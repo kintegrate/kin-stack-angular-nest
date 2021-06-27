@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
-import { WebAuthStore } from '@stack-v4210/web/auth/data-access'
-import { Role } from '@stack-v4210/web/core/data-access'
+import { WebAuthStore } from '@kin-nxpm-stack/web/auth/data-access'
+import { Role } from '@kin-nxpm-stack/web/core/data-access'
 import { ComponentStore } from '@ngrx/component-store'
 
 export interface WebLayoutLink {
@@ -26,6 +26,7 @@ export class WebLayoutStore extends ComponentStore<WebLayoutState> {
       footerHtml: `Copyright &copy; ${new Date().getFullYear()}`,
       links: [
         { label: 'Dashboard', route: '/dashboard' },
+        { label: 'Wallets', route: 'wallets' },
         { label: 'Admin', route: '/admin', role: Role.Admin },
       ],
       profileLinks: [

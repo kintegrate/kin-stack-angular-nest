@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
 import { PrismaClient, Prisma, Role } from '@prisma/client'
-import { getGravatarUrl, hashPassword } from '@stack-v4210/api/core/util'
+import { getGravatarUrl, hashPassword } from '@kin-nxpm-stack/api/core/util'
 
 @Injectable()
 export class ApiCoreDataAccessService extends PrismaClient implements OnModuleInit, OnModuleDestroy {

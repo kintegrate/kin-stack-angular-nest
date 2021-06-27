@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { Email } from '@stack-v4210/web/core/data-access'
-import { WebUiFormField } from '@stack-v4210/web/ui/form'
+import { Email } from '@kin-nxpm-stack/web/core/data-access'
+import { WebUiFormField } from '@kin-nxpm-stack/web/ui/form'
 
 @Component({
   selector: 'account-email-primary-form',

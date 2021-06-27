@@ -2,10 +2,13 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { Network } from '@kin-nxpm-stack/shared/util/sdk'
+
 export const environment = {
   api: '/api',
   graphql: '/graphql',
   production: false,
+  defaultNetwork: Network.KinTestnet,
 }
 
 /*

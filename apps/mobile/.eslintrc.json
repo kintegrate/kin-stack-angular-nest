@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "stack-v4210",
+            "prefix": "kin-nxpm-stack",
             "style": "kebab-case"
           }
         ],

@@ -59,5 +59,10 @@ module.exports = {
     '<rootDir>/libs/web/ui/table',
     '<rootDir>/libs/web/ui/toast',
     '<rootDir>/libs/shared/util/sdk',
+    '<rootDir>/libs/api/wallet/data-access',
+    '<rootDir>/libs/api/wallet/feature',
+    '<rootDir>/libs/web/wallet/feature',
+    '<rootDir>/libs/web/wallet/ui',
+    '<rootDir>/libs/web/wallet/data-access',
   ],
 }

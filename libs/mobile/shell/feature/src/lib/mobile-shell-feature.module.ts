@@ -3,9 +3,9 @@ import { PreloadAllModules, RouteReuseStrategy, RouterModule, Routes } from '@an
 import { SplashScreen } from '@ionic-native/splash-screen/ngx'
 import { StatusBar } from '@ionic-native/status-bar/ngx'
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
-import { MobileAuthDataAccessModule, IsLoggedInGuard } from '@stack-v4210/mobile/auth/data-access'
-import { MobileCoreFeatureModule } from '@stack-v4210/mobile/core/feature'
-import { MobileLayoutFeatureComponent } from '@stack-v4210/mobile/layout/feature'
+import { MobileAuthDataAccessModule, IsLoggedInGuard } from '@kin-nxpm-stack/mobile/auth/data-access'
+import { MobileCoreFeatureModule } from '@kin-nxpm-stack/mobile/core/feature'
+import { MobileLayoutFeatureComponent } from '@kin-nxpm-stack/mobile/layout/feature'
 
 const routes: Routes = [
   {
@@ -17,15 +17,16 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       {
         path: 'about',
-        loadChildren: () => import('@stack-v4210/mobile/about/feature').then((m) => m.MobileAboutFeatureModule),
+        loadChildren: () => import('@kin-nxpm-stack/mobile/about/feature').then((m) => m.MobileAboutFeatureModule),
       },
       {
         path: 'account',
-        loadChildren: () => import('@stack-v4210/mobile/account/feature').then((m) => m.MobileAccountFeatureModule),
+        loadChildren: () => import('@kin-nxpm-stack/mobile/account/feature').then((m) => m.MobileAccountFeatureModule),
       },
       {
         path: 'dashboard',
-        loadChildren: () => import('@stack-v4210/mobile/dashboard/feature').then((m) => m.MobileDashboardFeatureModule),
+        loadChildren: () =>
+          import('@kin-nxpm-stack/mobile/dashboard/feature').then((m) => m.MobileDashboardFeatureModule),
       },
       {
         path: 'not-found',
@@ -35,7 +36,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('@stack-v4210/mobile/auth/feature').then((m) => m.MobileAuthFeatureModule),
+    loadChildren: () => import('@kin-nxpm-stack/mobile/auth/feature').then((m) => m.MobileAuthFeatureModule),
   },
   { path: '**', redirectTo: '/not-found' },
 ]

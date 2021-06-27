@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
-import { WebAuthStore } from '@stack-v4210/web/auth/data-access'
-import { WebUiFormField } from '@stack-v4210/web/ui/form'
+import { WebAuthStore } from '@kin-nxpm-stack/web/auth/data-access'
+import { WebUiFormField } from '@kin-nxpm-stack/web/ui/form'
 
 @Component({
   template: `

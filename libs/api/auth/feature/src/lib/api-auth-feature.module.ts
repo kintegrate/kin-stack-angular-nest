@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { ApiAuthDataAccessModule } from '@stack-v4210/api/auth/data-access'
+import { ApiAuthDataAccessModule } from '@kin-nxpm-stack/api/auth/data-access'
 import { ApiAuthFeatureResolver } from './api-auth-feature.resolver'
 
 @Module({

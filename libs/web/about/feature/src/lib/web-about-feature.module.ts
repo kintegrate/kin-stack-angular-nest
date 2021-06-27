@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
-import { WebUiPageModule } from '@stack-v4210/web/ui/page'
+import { WebUiPageModule } from '@kin-nxpm-stack/web/ui/page'
 import { WebAboutFeatureComponent } from './web-about-feature.component'
 
 @NgModule({

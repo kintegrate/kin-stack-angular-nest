@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { WebUiFormModule } from '@stack-v4210/web/ui/form'
+import { WebUiFormModule } from '@kin-nxpm-stack/web/ui/form'
 import { AuthPageComponent } from './auth-page.component'
 
 @NgModule({

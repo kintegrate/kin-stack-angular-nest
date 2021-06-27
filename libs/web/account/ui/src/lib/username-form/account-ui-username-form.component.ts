@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { User } from '@stack-v4210/web/core/data-access'
-import { WebUiFormField } from '@stack-v4210/web/ui/form'
+import { User } from '@kin-nxpm-stack/web/core/data-access'
+import { WebUiFormField } from '@kin-nxpm-stack/web/ui/form'
 
 @Component({
   selector: 'account-username-form',

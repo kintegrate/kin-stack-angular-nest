@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { MobileUiSidebarPageModule } from '@stack-v4210/mobile/ui/sidebar-page'
+import { MobileUiSidebarPageModule } from '@kin-nxpm-stack/mobile/ui/sidebar-page'
 import { MobileAccountFeatureComponent } from './mobile-account-feature.component'
 
 @NgModule({

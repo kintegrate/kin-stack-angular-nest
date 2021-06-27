@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { AccountUpdateProfileInput } from '@stack-v4210/web/core/data-access'
+import { AccountUpdateProfileInput } from '@kin-nxpm-stack/web/core/data-access'
 import { AccountProfileStore } from './account-profile.store'
 
 @Component({

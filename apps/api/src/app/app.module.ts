@@ -1,6 +1,6 @@
 import { Logger, Module } from '@nestjs/common'
 import { ServeStaticModule } from '@nestjs/serve-static'
-import { ApiCoreFeatureModule } from '@stack-v4210/api/core/feature'
+import { ApiCoreFeatureModule } from '@kin-nxpm-stack/api/core/feature'
 import { ensureDirSync, existsSync, writeFileSync } from 'fs-extra'
 import { join } from 'path'
 

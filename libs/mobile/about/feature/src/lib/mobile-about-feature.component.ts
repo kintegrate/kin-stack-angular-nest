@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { MobileCoreDataAccessService } from '@stack-v4210/mobile/core/data-access'
+import { MobileCoreDataAccessService } from '@kin-nxpm-stack/mobile/core/data-access'
 import { map } from 'rxjs/operators'
 
 @Component({

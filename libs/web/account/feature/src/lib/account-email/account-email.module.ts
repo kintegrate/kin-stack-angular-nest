@@ -5,8 +5,8 @@ import {
   AccountUiEmailFormModule,
   AccountUiEmailListModule,
   AccountUiEmailPrimaryFormModule,
-} from '@stack-v4210/web/account/ui'
-import { WebUiLoaderModule } from '@stack-v4210/web/ui/loader'
+} from '@kin-nxpm-stack/web/account/ui'
+import { WebUiLoaderModule } from '@kin-nxpm-stack/web/ui/loader'
 import { AccountEmailComponent } from './account-email.component'
 
 @NgModule({

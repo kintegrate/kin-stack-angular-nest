@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
-import { MobileAuthStore } from '@stack-v4210/mobile/auth/data-access'
-import { Role } from '@stack-v4210/mobile/core/data-access'
+import { MobileAuthStore } from '@kin-nxpm-stack/mobile/auth/data-access'
+import { Role } from '@kin-nxpm-stack/mobile/core/data-access'
 import { ComponentStore } from '@ngrx/component-store'
 
 export interface MobileLayoutFeatureLink {

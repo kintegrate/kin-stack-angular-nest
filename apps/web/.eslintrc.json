@@ -13,7 +13,7 @@
         ],
         "@angular-eslint/component-selector": [
           "error",
-          { "type": "element", "prefix": "stack-v4210", "style": "kebab-case" }
+          { "type": "element", "prefix": "kin-nxpm-stack", "style": "kebab-case" }
         ]
       }
     },

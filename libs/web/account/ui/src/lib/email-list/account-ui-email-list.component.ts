@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { Email } from '@stack-v4210/web/core/data-access'
+import { Email } from '@kin-nxpm-stack/web/core/data-access'
 
 @Component({
   selector: 'account-email-list',

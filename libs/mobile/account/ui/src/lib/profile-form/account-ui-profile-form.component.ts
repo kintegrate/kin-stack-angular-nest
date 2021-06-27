@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { User } from '@stack-v4210/mobile/core/data-access'
-import { MobileUiFormField } from '@stack-v4210/mobile/ui/form'
+import { User } from '@kin-nxpm-stack/mobile/core/data-access'
+import { MobileUiFormField } from '@kin-nxpm-stack/mobile/ui/form'
 
 @Component({
   selector: 'account-profile-form',

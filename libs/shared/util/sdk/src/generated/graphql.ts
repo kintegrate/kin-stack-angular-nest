@@ -47,6 +47,19 @@ export type AdminCreateUserInput = {
   username?: Maybe<Scalars['String']>
 }
 
+export type AdminCreateWalletInput = {
+  name: Scalars['String']
+  network: Network
+  ownerId: Scalars['String']
+  publicKey: Scalars['String']
+}
+
+export type AdminListWalletInput = {
+  limit?: Maybe<Scalars['Int']>
+  name?: Maybe<Scalars['String']>
+  skip?: Maybe<Scalars['Int']>
+}
+
 export type AdminUpdateUserInput = {
   avatarUrl?: Maybe<Scalars['String']>
   bio?: Maybe<Scalars['String']>
@@ -56,6 +69,10 @@ export type AdminUpdateUserInput = {
   phone?: Maybe<Scalars['String']>
   role?: Maybe<Role>
   username?: Maybe<Scalars['String']>
+}
+
+export type AdminUpdateWalletInput = {
+  name?: Maybe<Scalars['String']>
 }
 
 export type AuthToken = {
@@ -111,13 +128,19 @@ export type Mutation = {
   accountUpdateProfile?: Maybe<User>
   accountUpdateUsername?: Maybe<User>
   adminCreateUser?: Maybe<User>
+  adminCreateWallet?: Maybe<Wallet>
   adminDeleteUser?: Maybe<User>
+  adminDeleteWallet?: Maybe<Wallet>
   adminSetUserPassword?: Maybe<User>
   adminUpdateUser?: Maybe<User>
+  adminUpdateWallet?: Maybe<Wallet>
   intercomPub?: Maybe<IntercomMessage>
   login?: Maybe<AuthToken>
   logout?: Maybe<Scalars['Boolean']>
   register?: Maybe<AuthToken>
+  userCreateWallet?: Maybe<Wallet>
+  userDeleteWallet?: Maybe<Wallet>
+  userUpdateWallet?: Maybe<Wallet>
 }
 
 export type MutationAccountCreateEmailArgs = {
@@ -156,8 +179,16 @@ export type MutationAdminCreateUserArgs = {
   input: AdminCreateUserInput
 }
 
+export type MutationAdminCreateWalletArgs = {
+  input: AdminCreateWalletInput
+}
+
 export type MutationAdminDeleteUserArgs = {
   userId: Scalars['String']
+}
+
+export type MutationAdminDeleteWalletArgs = {
+  walletId: Scalars['String']
 }
 
 export type MutationAdminSetUserPasswordArgs = {
@@ -168,6 +199,11 @@ export type MutationAdminSetUserPasswordArgs = {
 export type MutationAdminUpdateUserArgs = {
   input: AdminUpdateUserInput
   userId: Scalars['String']
+}
+
+export type MutationAdminUpdateWalletArgs = {
+  input: AdminUpdateWalletInput
+  walletId: Scalars['String']
 }
 
 export type MutationIntercomPubArgs = {
@@ -184,16 +220,40 @@ export type MutationRegisterArgs = {
   input: RegisterInput
 }
 
+export type MutationUserCreateWalletArgs = {
+  input: UserCreateWalletInput
+}
+
+export type MutationUserDeleteWalletArgs = {
+  walletId: Scalars['String']
+}
+
+export type MutationUserUpdateWalletArgs = {
+  input: UserUpdateWalletInput
+  walletId: Scalars['String']
+}
+
+export enum Network {
+  KinMainnet = 'KinMainnet',
+  KinTestnet = 'KinTestnet',
+}
+
 export type Query = {
   __typename?: 'Query'
   accountEmails?: Maybe<Array<Email>>
   accountProfile?: Maybe<User>
   accountUsernameAvailable?: Maybe<Scalars['Boolean']>
   adminCountUsers?: Maybe<CorePaging>
+  adminCountWallets?: Maybe<CorePaging>
   adminUser?: Maybe<User>
   adminUsers?: Maybe<Array<User>>
+  adminWallet?: Maybe<Wallet>
+  adminWallets?: Maybe<Array<Wallet>>
   me?: Maybe<User>
   uptime?: Maybe<Scalars['Float']>
+  userCountWallets?: Maybe<CorePaging>
+  userWallet?: Maybe<Wallet>
+  userWallets?: Maybe<Array<Wallet>>
 }
 
 export type QueryAccountUsernameAvailableArgs = {
@@ -204,12 +264,36 @@ export type QueryAdminCountUsersArgs = {
   paging?: Maybe<CorePagingInput>
 }
 
+export type QueryAdminCountWalletsArgs = {
+  input?: Maybe<AdminListWalletInput>
+}
+
 export type QueryAdminUserArgs = {
   userId: Scalars['String']
 }
 
 export type QueryAdminUsersArgs = {
   paging?: Maybe<CorePagingInput>
+}
+
+export type QueryAdminWalletArgs = {
+  walletId: Scalars['String']
+}
+
+export type QueryAdminWalletsArgs = {
+  input?: Maybe<AdminListWalletInput>
+}
+
+export type QueryUserCountWalletsArgs = {
+  input?: Maybe<UserListWalletInput>
+}
+
+export type QueryUserWalletArgs = {
+  walletId: Scalars['String']
+}
+
+export type QueryUserWalletsArgs = {
+  input?: Maybe<UserListWalletInput>
 }
 
 export type RegisterInput = {
@@ -253,6 +337,33 @@ export type User = {
   role?: Maybe<Role>
   updatedAt?: Maybe<Scalars['DateTime']>
   username?: Maybe<Scalars['String']>
+}
+
+export type UserCreateWalletInput = {
+  name: Scalars['String']
+  network: Network
+  publicKey: Scalars['String']
+}
+
+export type UserListWalletInput = {
+  limit?: Maybe<Scalars['Int']>
+  name?: Maybe<Scalars['String']>
+  skip?: Maybe<Scalars['Int']>
+}
+
+export type UserUpdateWalletInput = {
+  name?: Maybe<Scalars['String']>
+  publicKey?: Maybe<Scalars['String']>
+}
+
+export type Wallet = {
+  __typename?: 'Wallet'
+  createdAt?: Maybe<Scalars['DateTime']>
+  id?: Maybe<Scalars['String']>
+  name?: Maybe<Scalars['String']>
+  network?: Maybe<Network>
+  publicKey?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['DateTime']>
 }
 
 export type AccountEmailsQueryVariables = Exact<{ [key: string]: never }>
@@ -457,6 +568,111 @@ export type AdminDeleteUserMutation = { __typename?: 'Mutation' } & {
   adminDeleteUser?: Maybe<{ __typename?: 'User' } & UserDetailsFragment>
 }
 
+export type WalletDetailsFragment = { __typename?: 'Wallet' } & Pick<
+  Wallet,
+  'id' | 'createdAt' | 'updatedAt' | 'network' | 'name' | 'publicKey'
+>
+
+export type AdminWalletsQueryVariables = Exact<{
+  input?: Maybe<AdminListWalletInput>
+}>
+
+export type AdminWalletsQuery = { __typename?: 'Query' } & {
+  items?: Maybe<Array<{ __typename?: 'Wallet' } & WalletDetailsFragment>>
+  count?: Maybe<{ __typename?: 'CorePaging' } & CorePagingDetailsFragment>
+}
+
+export type AdminCountWalletsQueryVariables = Exact<{
+  input?: Maybe<AdminListWalletInput>
+}>
+
+export type AdminCountWalletsQuery = { __typename?: 'Query' } & {
+  count?: Maybe<{ __typename?: 'CorePaging' } & CorePagingDetailsFragment>
+}
+
+export type AdminWalletQueryVariables = Exact<{
+  walletId: Scalars['String']
+}>
+
+export type AdminWalletQuery = { __typename?: 'Query' } & {
+  item?: Maybe<{ __typename?: 'Wallet' } & WalletDetailsFragment>
+}
+
+export type AdminCreateWalletMutationVariables = Exact<{
+  input: AdminCreateWalletInput
+}>
+
+export type AdminCreateWalletMutation = { __typename?: 'Mutation' } & {
+  created?: Maybe<{ __typename?: 'Wallet' } & WalletDetailsFragment>
+}
+
+export type AdminUpdateWalletMutationVariables = Exact<{
+  walletId: Scalars['String']
+  input: AdminUpdateWalletInput
+}>
+
+export type AdminUpdateWalletMutation = { __typename?: 'Mutation' } & {
+  updated?: Maybe<{ __typename?: 'Wallet' } & WalletDetailsFragment>
+}
+
+export type AdminDeleteWalletMutationVariables = Exact<{
+  walletId: Scalars['String']
+}>
+
+export type AdminDeleteWalletMutation = { __typename?: 'Mutation' } & {
+  deleted?: Maybe<{ __typename?: 'Wallet' } & WalletDetailsFragment>
+}
+
+export type UserWalletsQueryVariables = Exact<{
+  input?: Maybe<UserListWalletInput>
+}>
+
+export type UserWalletsQuery = { __typename?: 'Query' } & {
+  items?: Maybe<Array<{ __typename?: 'Wallet' } & WalletDetailsFragment>>
+  count?: Maybe<{ __typename?: 'CorePaging' } & CorePagingDetailsFragment>
+}
+
+export type UserCountWalletsQueryVariables = Exact<{
+  input?: Maybe<UserListWalletInput>
+}>
+
+export type UserCountWalletsQuery = { __typename?: 'Query' } & {
+  count?: Maybe<{ __typename?: 'CorePaging' } & CorePagingDetailsFragment>
+}
+
+export type UserWalletQueryVariables = Exact<{
+  walletId: Scalars['String']
+}>
+
+export type UserWalletQuery = { __typename?: 'Query' } & {
+  item?: Maybe<{ __typename?: 'Wallet' } & WalletDetailsFragment>
+}
+
+export type UserCreateWalletMutationVariables = Exact<{
+  input: UserCreateWalletInput
+}>
+
+export type UserCreateWalletMutation = { __typename?: 'Mutation' } & {
+  created?: Maybe<{ __typename?: 'Wallet' } & WalletDetailsFragment>
+}
+
+export type UserUpdateWalletMutationVariables = Exact<{
+  walletId: Scalars['String']
+  input: UserUpdateWalletInput
+}>
+
+export type UserUpdateWalletMutation = { __typename?: 'Mutation' } & {
+  updated?: Maybe<{ __typename?: 'Wallet' } & WalletDetailsFragment>
+}
+
+export type UserDeleteWalletMutationVariables = Exact<{
+  walletId: Scalars['String']
+}>
+
+export type UserDeleteWalletMutation = { __typename?: 'Mutation' } & {
+  deleted?: Maybe<{ __typename?: 'Wallet' } & WalletDetailsFragment>
+}
+
 export const AuthTokenDetailsFragmentDoc = gql`
   fragment AuthTokenDetails on AuthToken {
     token
@@ -500,6 +716,16 @@ export const EmailDetailsFragmentDoc = gql`
     public
     primary
     verified
+  }
+`
+export const WalletDetailsFragmentDoc = gql`
+  fragment WalletDetails on Wallet {
+    id
+    createdAt
+    updatedAt
+    network
+    name
+    publicKey
   }
 `
 export const AccountEmailsDocument = gql`
@@ -988,6 +1214,251 @@ export class AdminDeleteUserGQL extends Apollo.Mutation<AdminDeleteUserMutation,
     super(apollo)
   }
 }
+export const AdminWalletsDocument = gql`
+  query AdminWallets($input: AdminListWalletInput) {
+    items: adminWallets(input: $input) {
+      ...WalletDetails
+    }
+    count: adminCountWallets(input: $input) {
+      ...CorePagingDetails
+    }
+  }
+  ${WalletDetailsFragmentDoc}
+  ${CorePagingDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AdminWalletsGQL extends Apollo.Query<AdminWalletsQuery, AdminWalletsQueryVariables> {
+  document = AdminWalletsDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const AdminCountWalletsDocument = gql`
+  query AdminCountWallets($input: AdminListWalletInput) {
+    count: adminCountWallets(input: $input) {
+      ...CorePagingDetails
+    }
+  }
+  ${CorePagingDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AdminCountWalletsGQL extends Apollo.Query<AdminCountWalletsQuery, AdminCountWalletsQueryVariables> {
+  document = AdminCountWalletsDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const AdminWalletDocument = gql`
+  query AdminWallet($walletId: String!) {
+    item: adminWallet(walletId: $walletId) {
+      ...WalletDetails
+    }
+  }
+  ${WalletDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AdminWalletGQL extends Apollo.Query<AdminWalletQuery, AdminWalletQueryVariables> {
+  document = AdminWalletDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const AdminCreateWalletDocument = gql`
+  mutation AdminCreateWallet($input: AdminCreateWalletInput!) {
+    created: adminCreateWallet(input: $input) {
+      ...WalletDetails
+    }
+  }
+  ${WalletDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AdminCreateWalletGQL extends Apollo.Mutation<
+  AdminCreateWalletMutation,
+  AdminCreateWalletMutationVariables
+> {
+  document = AdminCreateWalletDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const AdminUpdateWalletDocument = gql`
+  mutation AdminUpdateWallet($walletId: String!, $input: AdminUpdateWalletInput!) {
+    updated: adminUpdateWallet(walletId: $walletId, input: $input) {
+      ...WalletDetails
+    }
+  }
+  ${WalletDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AdminUpdateWalletGQL extends Apollo.Mutation<
+  AdminUpdateWalletMutation,
+  AdminUpdateWalletMutationVariables
+> {
+  document = AdminUpdateWalletDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const AdminDeleteWalletDocument = gql`
+  mutation AdminDeleteWallet($walletId: String!) {
+    deleted: adminDeleteWallet(walletId: $walletId) {
+      ...WalletDetails
+    }
+  }
+  ${WalletDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AdminDeleteWalletGQL extends Apollo.Mutation<
+  AdminDeleteWalletMutation,
+  AdminDeleteWalletMutationVariables
+> {
+  document = AdminDeleteWalletDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const UserWalletsDocument = gql`
+  query UserWallets($input: UserListWalletInput) {
+    items: userWallets(input: $input) {
+      ...WalletDetails
+    }
+    count: userCountWallets(input: $input) {
+      ...CorePagingDetails
+    }
+  }
+  ${WalletDetailsFragmentDoc}
+  ${CorePagingDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserWalletsGQL extends Apollo.Query<UserWalletsQuery, UserWalletsQueryVariables> {
+  document = UserWalletsDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const UserCountWalletsDocument = gql`
+  query UserCountWallets($input: UserListWalletInput) {
+    count: userCountWallets(input: $input) {
+      ...CorePagingDetails
+    }
+  }
+  ${CorePagingDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserCountWalletsGQL extends Apollo.Query<UserCountWalletsQuery, UserCountWalletsQueryVariables> {
+  document = UserCountWalletsDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const UserWalletDocument = gql`
+  query UserWallet($walletId: String!) {
+    item: userWallet(walletId: $walletId) {
+      ...WalletDetails
+    }
+  }
+  ${WalletDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserWalletGQL extends Apollo.Query<UserWalletQuery, UserWalletQueryVariables> {
+  document = UserWalletDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const UserCreateWalletDocument = gql`
+  mutation UserCreateWallet($input: UserCreateWalletInput!) {
+    created: userCreateWallet(input: $input) {
+      ...WalletDetails
+    }
+  }
+  ${WalletDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserCreateWalletGQL extends Apollo.Mutation<UserCreateWalletMutation, UserCreateWalletMutationVariables> {
+  document = UserCreateWalletDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const UserUpdateWalletDocument = gql`
+  mutation UserUpdateWallet($walletId: String!, $input: UserUpdateWalletInput!) {
+    updated: userUpdateWallet(walletId: $walletId, input: $input) {
+      ...WalletDetails
+    }
+  }
+  ${WalletDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserUpdateWalletGQL extends Apollo.Mutation<UserUpdateWalletMutation, UserUpdateWalletMutationVariables> {
+  document = UserUpdateWalletDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const UserDeleteWalletDocument = gql`
+  mutation UserDeleteWallet($walletId: String!) {
+    deleted: userDeleteWallet(walletId: $walletId) {
+      ...WalletDetails
+    }
+  }
+  ${WalletDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserDeleteWalletGQL extends Apollo.Mutation<UserDeleteWalletMutation, UserDeleteWalletMutationVariables> {
+  document = UserDeleteWalletDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
@@ -1026,6 +1497,18 @@ export class ApolloAngularSDK {
     private adminUpdateUserGql: AdminUpdateUserGQL,
     private adminSetUserPasswordGql: AdminSetUserPasswordGQL,
     private adminDeleteUserGql: AdminDeleteUserGQL,
+    private adminWalletsGql: AdminWalletsGQL,
+    private adminCountWalletsGql: AdminCountWalletsGQL,
+    private adminWalletGql: AdminWalletGQL,
+    private adminCreateWalletGql: AdminCreateWalletGQL,
+    private adminUpdateWalletGql: AdminUpdateWalletGQL,
+    private adminDeleteWalletGql: AdminDeleteWalletGQL,
+    private userWalletsGql: UserWalletsGQL,
+    private userCountWalletsGql: UserCountWalletsGQL,
+    private userWalletGql: UserWalletGQL,
+    private userCreateWalletGql: UserCreateWalletGQL,
+    private userUpdateWalletGql: UserUpdateWalletGQL,
+    private userDeleteWalletGql: UserDeleteWalletGQL,
   ) {}
 
   accountEmails(variables?: AccountEmailsQueryVariables, options?: QueryOptionsAlone<AccountEmailsQueryVariables>) {
@@ -1207,5 +1690,110 @@ export class ApolloAngularSDK {
     options?: MutationOptionsAlone<AdminDeleteUserMutation, AdminDeleteUserMutationVariables>,
   ) {
     return this.adminDeleteUserGql.mutate(variables, options)
+  }
+
+  adminWallets(variables?: AdminWalletsQueryVariables, options?: QueryOptionsAlone<AdminWalletsQueryVariables>) {
+    return this.adminWalletsGql.fetch(variables, options)
+  }
+
+  adminWalletsWatch(
+    variables?: AdminWalletsQueryVariables,
+    options?: WatchQueryOptionsAlone<AdminWalletsQueryVariables>,
+  ) {
+    return this.adminWalletsGql.watch(variables, options)
+  }
+
+  adminCountWallets(
+    variables?: AdminCountWalletsQueryVariables,
+    options?: QueryOptionsAlone<AdminCountWalletsQueryVariables>,
+  ) {
+    return this.adminCountWalletsGql.fetch(variables, options)
+  }
+
+  adminCountWalletsWatch(
+    variables?: AdminCountWalletsQueryVariables,
+    options?: WatchQueryOptionsAlone<AdminCountWalletsQueryVariables>,
+  ) {
+    return this.adminCountWalletsGql.watch(variables, options)
+  }
+
+  adminWallet(variables: AdminWalletQueryVariables, options?: QueryOptionsAlone<AdminWalletQueryVariables>) {
+    return this.adminWalletGql.fetch(variables, options)
+  }
+
+  adminWalletWatch(variables: AdminWalletQueryVariables, options?: WatchQueryOptionsAlone<AdminWalletQueryVariables>) {
+    return this.adminWalletGql.watch(variables, options)
+  }
+
+  adminCreateWallet(
+    variables: AdminCreateWalletMutationVariables,
+    options?: MutationOptionsAlone<AdminCreateWalletMutation, AdminCreateWalletMutationVariables>,
+  ) {
+    return this.adminCreateWalletGql.mutate(variables, options)
+  }
+
+  adminUpdateWallet(
+    variables: AdminUpdateWalletMutationVariables,
+    options?: MutationOptionsAlone<AdminUpdateWalletMutation, AdminUpdateWalletMutationVariables>,
+  ) {
+    return this.adminUpdateWalletGql.mutate(variables, options)
+  }
+
+  adminDeleteWallet(
+    variables: AdminDeleteWalletMutationVariables,
+    options?: MutationOptionsAlone<AdminDeleteWalletMutation, AdminDeleteWalletMutationVariables>,
+  ) {
+    return this.adminDeleteWalletGql.mutate(variables, options)
+  }
+
+  userWallets(variables?: UserWalletsQueryVariables, options?: QueryOptionsAlone<UserWalletsQueryVariables>) {
+    return this.userWalletsGql.fetch(variables, options)
+  }
+
+  userWalletsWatch(variables?: UserWalletsQueryVariables, options?: WatchQueryOptionsAlone<UserWalletsQueryVariables>) {
+    return this.userWalletsGql.watch(variables, options)
+  }
+
+  userCountWallets(
+    variables?: UserCountWalletsQueryVariables,
+    options?: QueryOptionsAlone<UserCountWalletsQueryVariables>,
+  ) {
+    return this.userCountWalletsGql.fetch(variables, options)
+  }
+
+  userCountWalletsWatch(
+    variables?: UserCountWalletsQueryVariables,
+    options?: WatchQueryOptionsAlone<UserCountWalletsQueryVariables>,
+  ) {
+    return this.userCountWalletsGql.watch(variables, options)
+  }
+
+  userWallet(variables: UserWalletQueryVariables, options?: QueryOptionsAlone<UserWalletQueryVariables>) {
+    return this.userWalletGql.fetch(variables, options)
+  }
+
+  userWalletWatch(variables: UserWalletQueryVariables, options?: WatchQueryOptionsAlone<UserWalletQueryVariables>) {
+    return this.userWalletGql.watch(variables, options)
+  }
+
+  userCreateWallet(
+    variables: UserCreateWalletMutationVariables,
+    options?: MutationOptionsAlone<UserCreateWalletMutation, UserCreateWalletMutationVariables>,
+  ) {
+    return this.userCreateWalletGql.mutate(variables, options)
+  }
+
+  userUpdateWallet(
+    variables: UserUpdateWalletMutationVariables,
+    options?: MutationOptionsAlone<UserUpdateWalletMutation, UserUpdateWalletMutationVariables>,
+  ) {
+    return this.userUpdateWalletGql.mutate(variables, options)
+  }
+
+  userDeleteWallet(
+    variables: UserDeleteWalletMutationVariables,
+    options?: MutationOptionsAlone<UserDeleteWalletMutation, UserDeleteWalletMutationVariables>,
+  ) {
+    return this.userDeleteWalletGql.mutate(variables, options)
   }
 }

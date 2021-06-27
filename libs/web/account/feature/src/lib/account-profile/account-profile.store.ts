@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
-import { AccountUpdateProfileInput, WebCoreDataAccessService, User } from '@stack-v4210/web/core/data-access'
+import { AccountUpdateProfileInput, WebCoreDataAccessService, User } from '@kin-nxpm-stack/web/core/data-access'
 import { mergeMap, switchMap, tap } from 'rxjs/operators'
 
 interface AccountProfileState {

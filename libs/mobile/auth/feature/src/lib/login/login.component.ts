@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
-import { MobileAuthStore } from '@stack-v4210/mobile/auth/data-access'
-import { MobileUiFormField } from '@stack-v4210/mobile/ui/form'
+import { MobileAuthStore } from '@kin-nxpm-stack/mobile/auth/data-access'
+import { MobileUiFormField } from '@kin-nxpm-stack/mobile/ui/form'
 
 @Component({
   template: `

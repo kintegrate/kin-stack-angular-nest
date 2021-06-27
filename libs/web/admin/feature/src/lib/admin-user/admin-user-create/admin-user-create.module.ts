@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { AdminUserFormModule } from '@stack-v4210/web/admin/ui'
-import { WebUiPageHeaderModule } from '@stack-v4210/web/ui/page-header'
+import { AdminUserFormModule } from '@kin-nxpm-stack/web/admin/ui'
+import { WebUiPageHeaderModule } from '@kin-nxpm-stack/web/ui/page-header'
 
 import { AdminUserCreateComponent } from './admin-user-create.component'
 

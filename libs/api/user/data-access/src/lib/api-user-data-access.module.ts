@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { ApiCoreDataAccessModule } from '@stack-v4210/api/core/data-access'
+import { ApiCoreDataAccessModule } from '@kin-nxpm-stack/api/core/data-access'
 
 import { ApiUserDataAccessService } from './api-user-data-access.service'
 

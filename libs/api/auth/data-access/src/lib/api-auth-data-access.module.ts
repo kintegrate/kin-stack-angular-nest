@@ -1,5 +1,5 @@
-import { ApiCoreDataAccessModule } from '@stack-v4210/api/core/data-access'
-import { ApiCoreUtilModule } from '@stack-v4210/api/core/util'
+import { ApiCoreDataAccessModule } from '@kin-nxpm-stack/api/core/data-access'
+import { ApiCoreUtilModule } from '@kin-nxpm-stack/api/core/util'
 import { Module } from '@nestjs/common'
 import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'

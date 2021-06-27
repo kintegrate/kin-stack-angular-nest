@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
-import { MobileUiButtonModule } from '@stack-v4210/mobile/ui/button'
-import { MobileUiPageModule } from '@stack-v4210/mobile/ui/page'
+import { MobileUiButtonModule } from '@kin-nxpm-stack/mobile/ui/button'
+import { MobileUiPageModule } from '@kin-nxpm-stack/mobile/ui/page'
 import { MobileDashboardFeatureComponent } from './mobile-dashboard-feature.component'
 
 @NgModule({

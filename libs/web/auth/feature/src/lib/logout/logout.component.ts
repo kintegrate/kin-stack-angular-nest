@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { WebAuthStore } from '@stack-v4210/web/auth/data-access'
+import { WebAuthStore } from '@kin-nxpm-stack/web/auth/data-access'
 
 @Component({
   template: `

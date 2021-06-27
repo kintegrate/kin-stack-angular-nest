@@ -1,4 +1,4 @@
-import { User } from '@stack-v4210/web/core/data-access'
+import { User } from '@kin-nxpm-stack/web/core/data-access'
 import { Component, Input } from '@angular/core'
 
 @Component({

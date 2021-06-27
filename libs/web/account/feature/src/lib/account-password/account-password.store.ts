@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
-import { AccountUpdatePasswordInput, WebCoreDataAccessService } from '@stack-v4210/web/core/data-access'
+import { AccountUpdatePasswordInput, WebCoreDataAccessService } from '@kin-nxpm-stack/web/core/data-access'
 import { mergeMap } from 'rxjs/operators'
 
 interface AccountPasswordState {

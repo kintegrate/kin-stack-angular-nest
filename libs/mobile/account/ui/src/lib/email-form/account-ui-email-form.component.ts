@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { MobileUiFormField } from '@stack-v4210/mobile/ui/form'
+import { MobileUiFormField } from '@kin-nxpm-stack/mobile/ui/form'
 
 @Component({
   selector: 'account-email-form',

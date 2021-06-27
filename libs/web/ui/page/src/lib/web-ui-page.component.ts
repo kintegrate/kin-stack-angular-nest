@@ -10,6 +10,7 @@ import { Component, Input } from '@angular/core'
             {{ headerTitle }}
           </h1>
           <div class="mt-0">
+            <ng-content select="header"></ng-content>
             <ng-content select="ui-page-header"></ng-content>
           </div>
         </div>

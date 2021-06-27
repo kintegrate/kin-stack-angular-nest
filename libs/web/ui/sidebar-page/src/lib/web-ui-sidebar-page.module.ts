@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { WebUiPageModule } from '@stack-v4210/web/ui/page'
+import { WebUiPageModule } from '@kin-nxpm-stack/web/ui/page'
 import { WebUiSidebarPageComponent } from './web-ui-sidebar-page.component'
 
 @NgModule({

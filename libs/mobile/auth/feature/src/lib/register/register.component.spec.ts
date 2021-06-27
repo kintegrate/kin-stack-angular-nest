@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { MobileAuthStore } from '@stack-v4210/mobile/auth/data-access'
+import { MobileAuthStore } from '@kin-nxpm-stack/mobile/auth/data-access'
 
 import { RegisterComponent } from './register.component'
 

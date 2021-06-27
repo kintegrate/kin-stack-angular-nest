@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, Logger, UnauthorizedException } from '@nestjs/common'
-import { ApiCoreDataAccessService } from '@stack-v4210/api/core/data-access'
-import { hashPassword, validatePassword } from '@stack-v4210/api/core/util'
+import { ApiCoreDataAccessService } from '@kin-nxpm-stack/api/core/data-access'
+import { hashPassword, validatePassword } from '@kin-nxpm-stack/api/core/util'
 import { Prisma } from '@prisma/client'
 import { AccountCreateEmailInput } from './dto/account-create-email.input'
 import { AccountUpdatePasswordInput } from './dto/account-update-password.input'

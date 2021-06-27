@@ -9,7 +9,7 @@
   "affected": {
     "defaultBase": "main"
   },
-  "npmScope": "stack-v4210",
+  "npmScope": "kin-nxpm-stack",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
@@ -53,6 +53,12 @@
       "tags": ["scope:api", "type:data-access"]
     },
     "api-user-feature": {
+      "tags": ["scope:api", "type:feature"]
+    },
+    "api-wallet-data-access": {
+      "tags": ["scope:api", "type:data-access"]
+    },
+    "api-wallet-feature": {
       "tags": ["scope:api", "type:feature"]
     },
     "mobile": {
@@ -205,6 +211,15 @@
       "tags": ["scope:web", "type:ui"]
     },
     "web-ui-toast": {
+      "tags": ["scope:web", "type:ui"]
+    },
+    "web-wallet-data-access": {
+      "tags": ["scope:web", "type:data-access"]
+    },
+    "web-wallet-feature": {
+      "tags": ["scope:web", "type:feature"]
+    },
+    "web-wallet-ui": {
       "tags": ["scope:web", "type:ui"]
     }
   }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { MobileCoreDataAccessService, LoginInput, RegisterInput } from '@stack-v4210/mobile/core/data-access'
+import { MobileCoreDataAccessService, LoginInput, RegisterInput } from '@kin-nxpm-stack/mobile/core/data-access'
 
 @Injectable()
 export class MobileAuthDataAccessService {

@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { WebCoreFeatureModule } from '@stack-v4210/web/core/feature'
-import { WebShellFeatureModule } from '@stack-v4210/web/shell/feature'
+import { WebCoreFeatureModule } from '@kin-nxpm-stack/web/core/feature'
+import { WebShellFeatureModule } from '@kin-nxpm-stack/web/shell/feature'
 
 import { AppComponent } from './app.component'
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { WebCoreDataAccessService, CorePagingInput, User } from '@stack-v4210/web/core/data-access'
+import { WebCoreDataAccessService, CorePagingInput, User } from '@kin-nxpm-stack/web/core/data-access'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
 import { switchMap, tap, withLatestFrom } from 'rxjs/operators'
 

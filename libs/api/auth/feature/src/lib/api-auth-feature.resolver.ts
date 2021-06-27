@@ -1,6 +1,6 @@
-import { ApiAuthDataAccessService, LoginInput, RegisterInput, AuthToken } from '@stack-v4210/api/auth/data-access'
-import { CtxUser, GqlAuthGuard } from '@stack-v4210/api/auth/util'
-import { User } from '@stack-v4210/api/user/data-access'
+import { ApiAuthDataAccessService, LoginInput, RegisterInput, AuthToken } from '@kin-nxpm-stack/api/auth/data-access'
+import { CtxUser, GqlAuthGuard } from '@kin-nxpm-stack/api/auth/util'
+import { User } from '@kin-nxpm-stack/api/user/data-access'
 import { Context, Query, Resolver, Mutation, Args } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 

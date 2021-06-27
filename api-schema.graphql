@@ -30,6 +30,19 @@ input AdminCreateUserInput {
   username: String
 }
 
+input AdminCreateWalletInput {
+  name: String!
+  network: Network!
+  ownerId: String!
+  publicKey: String!
+}
+
+input AdminListWalletInput {
+  limit: Int = 10
+  name: String
+  skip: Int = 0
+}
+
 input AdminUpdateUserInput {
   avatarUrl: String
   bio: String
@@ -39,6 +52,10 @@ input AdminUpdateUserInput {
   phone: String
   role: Role
   username: String
+}
+
+input AdminUpdateWalletInput {
+  name: String
 }
 
 type AuthToken {
@@ -99,13 +116,24 @@ type Mutation {
   accountUpdateProfile(input: AccountUpdateProfileInput!): User
   accountUpdateUsername(username: String!): User
   adminCreateUser(input: AdminCreateUserInput!): User
+  adminCreateWallet(input: AdminCreateWalletInput!): Wallet
   adminDeleteUser(userId: String!): User
+  adminDeleteWallet(walletId: String!): Wallet
   adminSetUserPassword(password: String!, userId: String!): User
   adminUpdateUser(input: AdminUpdateUserInput!, userId: String!): User
+  adminUpdateWallet(input: AdminUpdateWalletInput!, walletId: String!): Wallet
   intercomPub(payload: JSON, scope: String, type: String!): IntercomMessage
   login(input: LoginInput!): AuthToken
   logout: Boolean
   register(input: RegisterInput!): AuthToken
+  userCreateWallet(input: UserCreateWalletInput!): Wallet
+  userDeleteWallet(walletId: String!): Wallet
+  userUpdateWallet(input: UserUpdateWalletInput!, walletId: String!): Wallet
+}
+
+enum Network {
+  KinMainnet
+  KinTestnet
 }
 
 type Query {
@@ -113,10 +141,16 @@ type Query {
   accountProfile: User
   accountUsernameAvailable(username: String!): Boolean
   adminCountUsers(paging: CorePagingInput): CorePaging
+  adminCountWallets(input: AdminListWalletInput): CorePaging
   adminUser(userId: String!): User
   adminUsers(paging: CorePagingInput): [User!]
+  adminWallet(walletId: String!): Wallet
+  adminWallets(input: AdminListWalletInput): [Wallet!]
   me: User
   uptime: Float
+  userCountWallets(input: UserListWalletInput): CorePaging
+  userWallet(walletId: String!): Wallet
+  userWallets(input: UserListWalletInput): [Wallet!]
 }
 
 input RegisterInput {
@@ -153,4 +187,30 @@ type User {
   role: Role
   updatedAt: DateTime
   username: String
+}
+
+input UserCreateWalletInput {
+  name: String!
+  network: Network!
+  publicKey: String!
+}
+
+input UserListWalletInput {
+  limit: Int = 10
+  name: String
+  skip: Int = 0
+}
+
+input UserUpdateWalletInput {
+  name: String
+  publicKey: String
+}
+
+type Wallet {
+  createdAt: DateTime
+  id: String
+  name: String
+  network: Network
+  publicKey: String
+  updatedAt: DateTime
 }

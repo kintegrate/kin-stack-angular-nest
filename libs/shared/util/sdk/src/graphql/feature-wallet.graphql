@@ -1,0 +1,86 @@
+fragment WalletDetails on Wallet {
+  id
+  createdAt
+  updatedAt
+  network
+  name
+  publicKey
+}
+
+query AdminWallets($input: AdminListWalletInput) {
+  items: adminWallets(input: $input) {
+    ...WalletDetails
+  }
+  count: adminCountWallets(input: $input) {
+    ...CorePagingDetails
+  }
+}
+
+query AdminCountWallets($input: AdminListWalletInput) {
+  count: adminCountWallets(input: $input) {
+    ...CorePagingDetails
+  }
+}
+
+query AdminWallet($walletId: String!) {
+  item: adminWallet(walletId: $walletId) {
+    ...WalletDetails
+  }
+}
+
+mutation AdminCreateWallet($input: AdminCreateWalletInput!) {
+  created: adminCreateWallet(input: $input) {
+    ...WalletDetails
+  }
+}
+
+mutation AdminUpdateWallet($walletId: String!, $input: AdminUpdateWalletInput!) {
+  updated: adminUpdateWallet(walletId: $walletId, input: $input) {
+    ...WalletDetails
+  }
+}
+
+mutation AdminDeleteWallet($walletId: String!) {
+  deleted: adminDeleteWallet(walletId: $walletId) {
+    ...WalletDetails
+  }
+}
+
+query UserWallets($input: UserListWalletInput) {
+  items: userWallets(input: $input) {
+    ...WalletDetails
+  }
+  count: userCountWallets(input: $input) {
+    ...CorePagingDetails
+  }
+}
+
+query UserCountWallets($input: UserListWalletInput) {
+  count: userCountWallets(input: $input) {
+    ...CorePagingDetails
+  }
+}
+
+query UserWallet($walletId: String!) {
+  item: userWallet(walletId: $walletId) {
+    ...WalletDetails
+  }
+}
+
+mutation UserCreateWallet($input: UserCreateWalletInput!) {
+  created: userCreateWallet(input: $input) {
+    ...WalletDetails
+  }
+}
+
+mutation UserUpdateWallet($walletId: String!, $input: UserUpdateWalletInput!) {
+  updated: userUpdateWallet(walletId: $walletId, input: $input) {
+    ...WalletDetails
+  }
+}
+
+mutation UserDeleteWallet($walletId: String!) {
+  deleted: userDeleteWallet(walletId: $walletId) {
+    ...WalletDetails
+  }
+}

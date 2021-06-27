@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import { ApiCoreDataAccessService, CorePaging, CorePagingInput } from '@stack-v4210/api/core/data-access'
-import { getGravatarUrl, hashPassword, uniqueSuffix } from '@stack-v4210/api/core/util'
+import { ApiCoreDataAccessService, CorePaging, CorePagingInput } from '@kin-nxpm-stack/api/core/data-access'
+import { getGravatarUrl, hashPassword, uniqueSuffix } from '@kin-nxpm-stack/api/core/util'
 import { AdminCreateUserInput } from './dto/admin-create-user.input'
 import { AdminUpdateUserInput } from './dto/admin-update-user.input'
 

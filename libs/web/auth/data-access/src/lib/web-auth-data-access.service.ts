@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { WebCoreDataAccessService, LoginInput, RegisterInput } from '@stack-v4210/web/core/data-access'
+import { WebCoreDataAccessService, LoginInput, RegisterInput } from '@kin-nxpm-stack/web/core/data-access'
 
 @Injectable()
 export class WebAuthDataAccessService {

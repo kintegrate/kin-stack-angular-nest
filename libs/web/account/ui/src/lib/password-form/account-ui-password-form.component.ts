@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { WebUiFormField } from '@stack-v4210/web/ui/form'
+import { WebUiFormField } from '@kin-nxpm-stack/web/ui/form'
 
 @Component({
   selector: 'account-password-form',

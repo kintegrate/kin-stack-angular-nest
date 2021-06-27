@@ -62,3 +62,6 @@ import 'zone.js/dist/zone' // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+;(window as any).global = window
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+global.Buffer = global.Buffer || require('buffer').Buffer

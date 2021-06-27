@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
-import { WebCoreDataAccessService, User } from '@stack-v4210/web/core/data-access'
+import { WebCoreDataAccessService, User } from '@kin-nxpm-stack/web/core/data-access'
 import { pluck, switchMap, tap } from 'rxjs/operators'
 
 export interface UserDetailState {

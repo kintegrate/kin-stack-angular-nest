@@ -5,9 +5,9 @@ import {
   AccountUpdatePasswordInput,
   AccountUpdateProfileInput,
   ApiAccountDataAccessService,
-} from '@stack-v4210/api/account/data-access'
-import { CtxUser, GqlAuthGuard } from '@stack-v4210/api/auth/util'
-import { Email, User } from '@stack-v4210/api/user/data-access'
+} from '@kin-nxpm-stack/api/account/data-access'
+import { CtxUser, GqlAuthGuard } from '@kin-nxpm-stack/api/auth/util'
+import { Email, User } from '@kin-nxpm-stack/api/user/data-access'
 
 @Resolver()
 @UseGuards(GqlAuthGuard)

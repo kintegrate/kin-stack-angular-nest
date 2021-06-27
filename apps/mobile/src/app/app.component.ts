@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx'
 import { StatusBar } from '@ionic-native/status-bar/ngx'
 
 @Component({
-  selector: 'stack-v4210-root',
+  selector: 'kin-nxpm-stack-root',
   template: `
     <ion-app>
       <ion-router-outlet></ion-router-outlet>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { AdminUpdateUserInput, Role } from '@stack-v4210/web/core/data-access'
-import { WebUiFormField } from '@stack-v4210/web/ui/form'
+import { AdminUpdateUserInput, Role } from '@kin-nxpm-stack/web/core/data-access'
+import { WebUiFormField } from '@kin-nxpm-stack/web/ui/form'
 import { AdminUserEditStore } from './admin-user-edit.store'
 
 @Component({

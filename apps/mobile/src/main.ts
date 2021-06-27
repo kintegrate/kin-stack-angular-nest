@@ -1,6 +1,6 @@
 import { enableProdMode } from '@angular/core'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
-import { environment } from '@stack-v4210/mobile/core/feature'
+import { environment } from '@kin-nxpm-stack/mobile/core/feature'
 
 import { AppModule } from './app/app.module'
 
