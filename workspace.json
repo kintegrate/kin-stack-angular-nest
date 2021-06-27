@@ -266,6 +266,48 @@
         }
       }
     },
+    "api-transaction-data-access": {
+      "root": "libs/api/transaction/data-access",
+      "sourceRoot": "libs/api/transaction/data-access/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/transaction/data-access/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/transaction/data-access"],
+          "options": {
+            "jestConfig": "libs/api/transaction/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-transaction-feature": {
+      "root": "libs/api/transaction/feature",
+      "sourceRoot": "libs/api/transaction/feature/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/transaction/feature/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/transaction/feature"],
+          "options": {
+            "jestConfig": "libs/api/transaction/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "api-user-data-access": {
       "root": "libs/api/user/data-access",
       "sourceRoot": "libs/api/user/data-access/src",
@@ -1441,6 +1483,53 @@
       "sourceRoot": "libs/web/style/src",
       "prefix": "style",
       "targets": {}
+    },
+    "web-transaction-feature": {
+      "projectType": "library",
+      "root": "libs/web/transaction/feature",
+      "sourceRoot": "libs/web/transaction/feature/src",
+      "prefix": "transaction",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/web/transaction/feature/src/**/*.ts",
+              "libs/web/transaction/feature/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/transaction/feature"],
+          "options": {
+            "jestConfig": "libs/web/transaction/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "web-transaction-ui": {
+      "projectType": "library",
+      "root": "libs/web/transaction/ui",
+      "sourceRoot": "libs/web/transaction/ui/src",
+      "prefix": "transaction",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/web/transaction/ui/src/**/*.ts", "libs/web/transaction/ui/src/**/*.html"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/transaction/ui"],
+          "options": {
+            "jestConfig": "libs/web/transaction/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     },
     "web-ui-button": {
       "projectType": "library",

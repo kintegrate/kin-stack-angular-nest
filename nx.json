@@ -52,6 +52,12 @@
     "api-integration-kin": {
       "tags": ["scope:api", "type:util"]
     },
+    "api-transaction-data-access": {
+      "tags": ["scope:api", "type:data-access"]
+    },
+    "api-transaction-feature": {
+      "tags": ["scope:api", "type:feature"]
+    },
     "api-user-data-access": {
       "tags": ["scope:api", "type:data-access"]
     },
@@ -188,6 +194,12 @@
     },
     "web-style": {
       "tags": ["scope:web", "type:style"]
+    },
+    "web-transaction-feature": {
+      "tags": ["scope:web", "type:feature"]
+    },
+    "web-transaction-ui": {
+      "tags": ["scope:web", "type:ui"]
     },
     "web-ui-button": {
       "tags": ["scope:web", "type:ui"]

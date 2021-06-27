@@ -62,3 +62,16 @@ enum Network {
   KinMainnet
   KinTestnet
 }
+
+model Transaction {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  network     Network
+  txid        String
+  sender      String
+  destination String
+  amount      String
+  memo        String?
+  invoice     Json?
+}

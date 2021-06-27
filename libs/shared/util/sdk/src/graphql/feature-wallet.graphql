@@ -67,6 +67,12 @@ query UserWallet($walletId: String!) {
   }
 }
 
+query UserWalletTransactions($walletId: String!) {
+  transactions: userWalletTransactions(walletId: $walletId) {
+    ...TransactionDetails
+  }
+}
+
 mutation UserCreateWallet($input: UserCreateWalletInput!) {
   created: userCreateWallet(input: $input) {
     ...WalletDetails

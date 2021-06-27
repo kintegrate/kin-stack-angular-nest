@@ -3,6 +3,7 @@ import { ApiAccountFeatureModule } from '@kin-nxpm-stack/api/account/feature'
 import { ApiAuthFeatureModule } from '@kin-nxpm-stack/api/auth/feature'
 import { ApiIntegrationKinModule } from '@kin-nxpm-stack/api/integration/kin'
 import { ApiUserFeatureModule } from '@kin-nxpm-stack/api/user/feature'
+import { ApiTransactionFeatureModule } from '@kin-nxpm-stack/api/transaction/feature'
 import { ApiWalletFeatureModule } from '@kin-nxpm-stack/api/wallet/feature'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
@@ -31,6 +32,7 @@ import { ApiCoreFeatureService } from './api-core-feature.service'
     ApiAuthFeatureModule,
     ApiIntegrationKinModule,
     ApiUserFeatureModule,
+    ApiTransactionFeatureModule,
     ApiWalletFeatureModule,
   ],
   controllers: [ApiCoreFeatureController],

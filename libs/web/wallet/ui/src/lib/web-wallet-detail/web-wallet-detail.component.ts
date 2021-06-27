@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { Wallet } from '@kin-nxpm-stack/shared/util/sdk'
+import { Transaction, Wallet } from '@kin-nxpm-stack/shared/util/sdk'
 import { SendKinInput } from '@kin-nxpm-stack/web/wallet/data-access'
 import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-client'
 
@@ -33,12 +33,16 @@ import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-clien
             ></web-wallet-form-send>
           </ng-container>
         </div>
+        <div class="flex flex-col space-y-3">
+          <web-transaction-list [transactions]="transactions"></web-transaction-list>
+        </div>
       </div>
     </ng-container>
   `,
 })
 export class WebWalletDetailComponent {
   @Input() balances: KinAccountBalance[]
+  @Input() transactions: Transaction[]
   @Input() wallet: Wallet
   @Output() airdrop = new EventEmitter<Wallet>()
   @Output() refresh = new EventEmitter<Wallet>()

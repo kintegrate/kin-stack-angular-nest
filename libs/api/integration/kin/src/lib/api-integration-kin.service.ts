@@ -1,11 +1,10 @@
-import { Environment, quarksToKin } from '@kinecosystem/kin-sdk-v2'
+import { ApiCoreDataAccessService, Network } from '@kin-nxpm-stack/api/core/data-access'
+import { Prisma } from '@prisma/client'
+import { quarksToKin } from '@kinecosystem/kin-sdk-v2'
 import {
-  CreateAccountHandler,
   CreateAccountRequest,
   CreateAccountResponse,
   Event,
-  EventsHandler,
-  SignTransactionHandler,
   SignTransactionRequest,
   SignTransactionResponse,
 } from '@kinecosystem/kin-sdk-v2/dist/webhook'
@@ -14,24 +13,32 @@ import * as bs58 from 'bs58'
 
 @Injectable()
 export class ApiIntegrationKinService {
-  private readonly secret = process.env.KIN_WEBHOOK_SECRET
-  private readonly env: Environment =
-    process.env.KIN_DEFAULT_NETWORK === 'mainnet' ? Environment.Prod : Environment.Test
+  private readonly network: Network =
+    process.env.KIN_DEFAULT_NETWORK === 'mainnet' ? Network.KinMainnet : Network.KinTestnet
   private readonly logger = new Logger('ApiIntegrationKinService')
-  constructor() {
+  constructor(private readonly data: ApiCoreDataAccessService) {
     this.logger.log('Hello!')
   }
 
-  signTransactionHandler(req: SignTransactionRequest, res: SignTransactionResponse) {
+  async signTransactionHandler(req: SignTransactionRequest, res: SignTransactionResponse) {
     // Get the Transaction ID
-    const txId = bs58.encode(req.txId())
-    this.logger.verbose(`sign-transaction with id: ${txId}`)
+    const txid = bs58.encode(req.txId())
+    this.logger.verbose(`sign-transaction with id: ${txid}`)
 
     // Go over the payments
     for (const payment of req.payments) {
-      console.log('Sender:      ', payment.sender.toBase58())
-      console.log('Destination: ', payment.destination.toBase58())
-      console.log('Kin:         ', quarksToKin(payment.quarks))
+      const data: Prisma.TransactionCreateInput = {
+        network: this.network,
+        txid,
+        sender: payment.sender.toBase58(),
+        destination: payment.destination.toBase58(),
+        amount: quarksToKin(payment.quarks),
+        memo: payment.memo,
+        invoice: JSON.stringify(payment.invoice),
+      }
+
+      await this.data.transaction.create({ data })
+      console.log('Data: ', data)
 
       for (const item of payment?.invoice?.Items || []) {
         console.log('Invoice Item', item)

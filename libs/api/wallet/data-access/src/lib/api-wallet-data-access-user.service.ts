@@ -1,5 +1,5 @@
+import { ApiCoreDataAccessService, CorePaging } from '@kin-nxpm-stack/api/core/data-access'
 import { Injectable } from '@nestjs/common'
-import { ApiCoreDataAccessService, CorePaging, CorePagingInput } from '@kin-nxpm-stack/api/core/data-access'
 
 import { UserCreateWalletInput } from './dto/user-create-wallet.input'
 import { UserListWalletInput } from './dto/user-list-wallet.input'
@@ -44,5 +44,15 @@ export class ApiWalletDataAccessUserService {
 
   userDeleteWallet(userId: string, walletId) {
     return this.data.wallet.delete({ where: { id: walletId } })
+  }
+
+  async userWalletTransactions(userId: string, walletId: string) {
+    const wallet = await this.userWallet(userId, walletId)
+    return this.data.transaction.findMany({
+      where: {
+        OR: [{ sender: wallet.publicKey }, { destination: wallet.publicKey }],
+      },
+      orderBy: { createdAt: 'desc' },
+    })
   }
 }

@@ -1,3 +1,4 @@
+import { Transaction } from '@kin-nxpm-stack/api/transaction/data-access'
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 import {
@@ -35,6 +36,11 @@ export class ApiWalletFeatureUserResolver {
   @Query(() => Wallet, { nullable: true })
   userWallet(@CtxUser() user: User, @Args('walletId') walletId: string) {
     return this.service.userWallet(user.id, walletId)
+  }
+
+  @Query(() => [Transaction], { nullable: true })
+  userWalletTransactions(@CtxUser() user: User, @Args('walletId') walletId: string) {
+    return this.service.userWalletTransactions(user.id, walletId)
   }
 
   @Mutation(() => Wallet, { nullable: true })

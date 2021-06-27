@@ -15,6 +15,12 @@ import { WebAdminFeatureComponent } from './web-admin-feature.component'
         children: [
           { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
           {
+            path: 'transactions',
+            loadChildren: () =>
+              import('./admin-transaction/admin-transaction.module').then((m) => m.AdminTransactionModule),
+          },
+
+          {
             path: 'wallets',
             loadChildren: () => import('./admin-wallet/admin-wallet.module').then((m) => m.AdminWalletModule),
           },

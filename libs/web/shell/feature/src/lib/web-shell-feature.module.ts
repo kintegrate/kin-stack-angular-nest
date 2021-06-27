@@ -13,6 +13,11 @@ const routes: Routes = [
       // Application routes here
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       {
+        path: 'transactions',
+        loadChildren: () =>
+          import('@kin-nxpm-stack/web/transaction/feature').then((m) => m.WebTransactionFeatureModule),
+      },
+      {
         path: 'wallets',
         loadChildren: () => import('@kin-nxpm-stack/web/wallet/feature').then((m) => m.WebWalletFeatureModule),
       },

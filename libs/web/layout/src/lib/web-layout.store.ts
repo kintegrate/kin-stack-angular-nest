@@ -26,6 +26,7 @@ export class WebLayoutStore extends ComponentStore<WebLayoutState> {
       footerHtml: `Copyright &copy; ${new Date().getFullYear()}`,
       links: [
         { label: 'Dashboard', route: '/dashboard' },
+        { label: 'Transactions', route: 'transactions' },
         { label: 'Wallets', route: 'wallets' },
         { label: 'Admin', route: '/admin', role: Role.Admin },
       ],

@@ -65,5 +65,9 @@ module.exports = {
     '<rootDir>/libs/web/wallet/ui',
     '<rootDir>/libs/web/wallet/data-access',
     '<rootDir>/libs/api/integration/kin',
+    '<rootDir>/libs/api/transaction/data-access',
+    '<rootDir>/libs/api/transaction/feature',
+    '<rootDir>/libs/web/transaction/feature',
+    '<rootDir>/libs/web/transaction/ui',
   ],
 }

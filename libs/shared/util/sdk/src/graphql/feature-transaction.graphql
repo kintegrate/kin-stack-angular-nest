@@ -1,0 +1,55 @@
+fragment TransactionDetails on Transaction {
+  id
+  createdAt
+  updatedAt
+  txid
+  network
+  type
+  sender
+  destination
+  amount
+  memo
+  invoice
+}
+
+query AdminTransactions($input: AdminListTransactionInput) {
+  items: adminTransactions(input: $input) {
+    ...TransactionDetails
+  }
+  count: adminCountTransactions(input: $input) {
+    ...CorePagingDetails
+  }
+}
+
+query AdminCountTransactions($input: AdminListTransactionInput) {
+  count: adminCountTransactions(input: $input) {
+    ...CorePagingDetails
+  }
+}
+
+query AdminTransaction($transactionId: String!) {
+  item: adminTransaction(transactionId: $transactionId) {
+    ...TransactionDetails
+  }
+}
+
+query UserTransactions($input: UserListTransactionInput) {
+  items: userTransactions(input: $input) {
+    ...TransactionDetails
+  }
+  count: userCountTransactions(input: $input) {
+    ...CorePagingDetails
+  }
+}
+
+query UserCountTransactions($input: UserListTransactionInput) {
+  count: userCountTransactions(input: $input) {
+    ...CorePagingDetails
+  }
+}
+
+query UserTransaction($transactionId: String!) {
+  item: userTransaction(transactionId: $transactionId) {
+    ...TransactionDetails
+  }
+}

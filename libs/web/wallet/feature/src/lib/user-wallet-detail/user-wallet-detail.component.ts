@@ -23,6 +23,7 @@ import { UserWalletDetailStore } from './user-wallet-detail.store'
           (send)="send($event)"
           [wallet]="vm.wallet"
           [balances]="vm.balances"
+          [transactions]="vm.transactions"
         ></web-wallet-detail>
       </ng-container>
     </ng-container>

@@ -54,6 +54,12 @@ export type AdminCreateWalletInput = {
   publicKey: Scalars['String']
 }
 
+export type AdminListTransactionInput = {
+  limit?: Maybe<Scalars['Int']>
+  skip?: Maybe<Scalars['Int']>
+  txid?: Maybe<Scalars['String']>
+}
+
 export type AdminListWalletInput = {
   limit?: Maybe<Scalars['Int']>
   name?: Maybe<Scalars['String']>
@@ -243,21 +249,32 @@ export type Query = {
   accountEmails?: Maybe<Array<Email>>
   accountProfile?: Maybe<User>
   accountUsernameAvailable?: Maybe<Scalars['Boolean']>
+  adminCountTransactions?: Maybe<CorePaging>
   adminCountUsers?: Maybe<CorePaging>
   adminCountWallets?: Maybe<CorePaging>
+  adminTransaction?: Maybe<Transaction>
+  adminTransactions?: Maybe<Array<Transaction>>
   adminUser?: Maybe<User>
   adminUsers?: Maybe<Array<User>>
   adminWallet?: Maybe<Wallet>
   adminWallets?: Maybe<Array<Wallet>>
   me?: Maybe<User>
   uptime?: Maybe<Scalars['Float']>
+  userCountTransactions?: Maybe<CorePaging>
   userCountWallets?: Maybe<CorePaging>
+  userTransaction?: Maybe<Transaction>
+  userTransactions?: Maybe<Array<Transaction>>
   userWallet?: Maybe<Wallet>
+  userWalletTransactions?: Maybe<Array<Transaction>>
   userWallets?: Maybe<Array<Wallet>>
 }
 
 export type QueryAccountUsernameAvailableArgs = {
   username: Scalars['String']
+}
+
+export type QueryAdminCountTransactionsArgs = {
+  input?: Maybe<AdminListTransactionInput>
 }
 
 export type QueryAdminCountUsersArgs = {
@@ -266,6 +283,14 @@ export type QueryAdminCountUsersArgs = {
 
 export type QueryAdminCountWalletsArgs = {
   input?: Maybe<AdminListWalletInput>
+}
+
+export type QueryAdminTransactionArgs = {
+  transactionId: Scalars['String']
+}
+
+export type QueryAdminTransactionsArgs = {
+  input?: Maybe<AdminListTransactionInput>
 }
 
 export type QueryAdminUserArgs = {
@@ -284,11 +309,27 @@ export type QueryAdminWalletsArgs = {
   input?: Maybe<AdminListWalletInput>
 }
 
+export type QueryUserCountTransactionsArgs = {
+  input?: Maybe<UserListTransactionInput>
+}
+
 export type QueryUserCountWalletsArgs = {
   input?: Maybe<UserListWalletInput>
 }
 
+export type QueryUserTransactionArgs = {
+  transactionId: Scalars['String']
+}
+
+export type QueryUserTransactionsArgs = {
+  input?: Maybe<UserListTransactionInput>
+}
+
 export type QueryUserWalletArgs = {
+  walletId: Scalars['String']
+}
+
+export type QueryUserWalletTransactionsArgs = {
   walletId: Scalars['String']
 }
 
@@ -321,6 +362,26 @@ export type SubscriptionIntercomSubArgs = {
   type?: Maybe<Scalars['String']>
 }
 
+export type Transaction = {
+  __typename?: 'Transaction'
+  amount?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  destination?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['String']>
+  invoice?: Maybe<Scalars['JSON']>
+  memo?: Maybe<Scalars['String']>
+  network?: Maybe<Network>
+  sender?: Maybe<Scalars['String']>
+  txid?: Maybe<Scalars['String']>
+  type?: Maybe<TransactionType>
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export enum TransactionType {
+  Incoming = 'Incoming',
+  Outgoing = 'Outgoing',
+}
+
 export type User = {
   __typename?: 'User'
   avatarUrl?: Maybe<Scalars['String']>
@@ -343,6 +404,12 @@ export type UserCreateWalletInput = {
   name: Scalars['String']
   network: Network
   publicKey: Scalars['String']
+}
+
+export type UserListTransactionInput = {
+  limit?: Maybe<Scalars['Int']>
+  skip?: Maybe<Scalars['Int']>
+  txid?: Maybe<Scalars['String']>
 }
 
 export type UserListWalletInput = {
@@ -503,6 +570,71 @@ export type IntercomSubSubscription = { __typename?: 'Subscription' } & {
   intercomSub?: Maybe<{ __typename?: 'IntercomMessage' } & IntercomDetailsFragment>
 }
 
+export type TransactionDetailsFragment = { __typename?: 'Transaction' } & Pick<
+  Transaction,
+  | 'id'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'txid'
+  | 'network'
+  | 'type'
+  | 'sender'
+  | 'destination'
+  | 'amount'
+  | 'memo'
+  | 'invoice'
+>
+
+export type AdminTransactionsQueryVariables = Exact<{
+  input?: Maybe<AdminListTransactionInput>
+}>
+
+export type AdminTransactionsQuery = { __typename?: 'Query' } & {
+  items?: Maybe<Array<{ __typename?: 'Transaction' } & TransactionDetailsFragment>>
+  count?: Maybe<{ __typename?: 'CorePaging' } & CorePagingDetailsFragment>
+}
+
+export type AdminCountTransactionsQueryVariables = Exact<{
+  input?: Maybe<AdminListTransactionInput>
+}>
+
+export type AdminCountTransactionsQuery = { __typename?: 'Query' } & {
+  count?: Maybe<{ __typename?: 'CorePaging' } & CorePagingDetailsFragment>
+}
+
+export type AdminTransactionQueryVariables = Exact<{
+  transactionId: Scalars['String']
+}>
+
+export type AdminTransactionQuery = { __typename?: 'Query' } & {
+  item?: Maybe<{ __typename?: 'Transaction' } & TransactionDetailsFragment>
+}
+
+export type UserTransactionsQueryVariables = Exact<{
+  input?: Maybe<UserListTransactionInput>
+}>
+
+export type UserTransactionsQuery = { __typename?: 'Query' } & {
+  items?: Maybe<Array<{ __typename?: 'Transaction' } & TransactionDetailsFragment>>
+  count?: Maybe<{ __typename?: 'CorePaging' } & CorePagingDetailsFragment>
+}
+
+export type UserCountTransactionsQueryVariables = Exact<{
+  input?: Maybe<UserListTransactionInput>
+}>
+
+export type UserCountTransactionsQuery = { __typename?: 'Query' } & {
+  count?: Maybe<{ __typename?: 'CorePaging' } & CorePagingDetailsFragment>
+}
+
+export type UserTransactionQueryVariables = Exact<{
+  transactionId: Scalars['String']
+}>
+
+export type UserTransactionQuery = { __typename?: 'Query' } & {
+  item?: Maybe<{ __typename?: 'Transaction' } & TransactionDetailsFragment>
+}
+
 export type UserDetailsFragment = { __typename?: 'User' } & Pick<
   User,
   'id' | 'firstName' | 'lastName' | 'name' | 'username' | 'avatarUrl' | 'email' | 'location' | 'phone' | 'bio' | 'role'
@@ -648,6 +780,14 @@ export type UserWalletQuery = { __typename?: 'Query' } & {
   item?: Maybe<{ __typename?: 'Wallet' } & WalletDetailsFragment>
 }
 
+export type UserWalletTransactionsQueryVariables = Exact<{
+  walletId: Scalars['String']
+}>
+
+export type UserWalletTransactionsQuery = { __typename?: 'Query' } & {
+  transactions?: Maybe<Array<{ __typename?: 'Transaction' } & TransactionDetailsFragment>>
+}
+
 export type UserCreateWalletMutationVariables = Exact<{
   input: UserCreateWalletInput
 }>
@@ -690,6 +830,21 @@ export const IntercomDetailsFragmentDoc = gql`
     type
     scope
     payload
+  }
+`
+export const TransactionDetailsFragmentDoc = gql`
+  fragment TransactionDetails on Transaction {
+    id
+    createdAt
+    updatedAt
+    txid
+    network
+    type
+    sender
+    destination
+    amount
+    memo
+    invoice
   }
 `
 export const UserDetailsFragmentDoc = gql`
@@ -1089,6 +1244,134 @@ export class IntercomSubGQL extends Apollo.Subscription<IntercomSubSubscription,
     super(apollo)
   }
 }
+export const AdminTransactionsDocument = gql`
+  query AdminTransactions($input: AdminListTransactionInput) {
+    items: adminTransactions(input: $input) {
+      ...TransactionDetails
+    }
+    count: adminCountTransactions(input: $input) {
+      ...CorePagingDetails
+    }
+  }
+  ${TransactionDetailsFragmentDoc}
+  ${CorePagingDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AdminTransactionsGQL extends Apollo.Query<AdminTransactionsQuery, AdminTransactionsQueryVariables> {
+  document = AdminTransactionsDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const AdminCountTransactionsDocument = gql`
+  query AdminCountTransactions($input: AdminListTransactionInput) {
+    count: adminCountTransactions(input: $input) {
+      ...CorePagingDetails
+    }
+  }
+  ${CorePagingDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AdminCountTransactionsGQL extends Apollo.Query<
+  AdminCountTransactionsQuery,
+  AdminCountTransactionsQueryVariables
+> {
+  document = AdminCountTransactionsDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const AdminTransactionDocument = gql`
+  query AdminTransaction($transactionId: String!) {
+    item: adminTransaction(transactionId: $transactionId) {
+      ...TransactionDetails
+    }
+  }
+  ${TransactionDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AdminTransactionGQL extends Apollo.Query<AdminTransactionQuery, AdminTransactionQueryVariables> {
+  document = AdminTransactionDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const UserTransactionsDocument = gql`
+  query UserTransactions($input: UserListTransactionInput) {
+    items: userTransactions(input: $input) {
+      ...TransactionDetails
+    }
+    count: userCountTransactions(input: $input) {
+      ...CorePagingDetails
+    }
+  }
+  ${TransactionDetailsFragmentDoc}
+  ${CorePagingDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserTransactionsGQL extends Apollo.Query<UserTransactionsQuery, UserTransactionsQueryVariables> {
+  document = UserTransactionsDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const UserCountTransactionsDocument = gql`
+  query UserCountTransactions($input: UserListTransactionInput) {
+    count: userCountTransactions(input: $input) {
+      ...CorePagingDetails
+    }
+  }
+  ${CorePagingDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserCountTransactionsGQL extends Apollo.Query<
+  UserCountTransactionsQuery,
+  UserCountTransactionsQueryVariables
+> {
+  document = UserCountTransactionsDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const UserTransactionDocument = gql`
+  query UserTransaction($transactionId: String!) {
+    item: userTransaction(transactionId: $transactionId) {
+      ...TransactionDetails
+    }
+  }
+  ${TransactionDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserTransactionGQL extends Apollo.Query<UserTransactionQuery, UserTransactionQueryVariables> {
+  document = UserTransactionDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
 export const AdminUsersDocument = gql`
   query AdminUsers($paging: CorePagingInput) {
     users: adminUsers(paging: $paging) {
@@ -1402,6 +1685,28 @@ export class UserWalletGQL extends Apollo.Query<UserWalletQuery, UserWalletQuery
     super(apollo)
   }
 }
+export const UserWalletTransactionsDocument = gql`
+  query UserWalletTransactions($walletId: String!) {
+    transactions: userWalletTransactions(walletId: $walletId) {
+      ...TransactionDetails
+    }
+  }
+  ${TransactionDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserWalletTransactionsGQL extends Apollo.Query<
+  UserWalletTransactionsQuery,
+  UserWalletTransactionsQueryVariables
+> {
+  document = UserWalletTransactionsDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
 export const UserCreateWalletDocument = gql`
   mutation UserCreateWallet($input: UserCreateWalletInput!) {
     created: userCreateWallet(input: $input) {
@@ -1491,6 +1796,12 @@ export class ApolloAngularSDK {
     private uptimeGql: UptimeGQL,
     private intercomPubGql: IntercomPubGQL,
     private intercomSubGql: IntercomSubGQL,
+    private adminTransactionsGql: AdminTransactionsGQL,
+    private adminCountTransactionsGql: AdminCountTransactionsGQL,
+    private adminTransactionGql: AdminTransactionGQL,
+    private userTransactionsGql: UserTransactionsGQL,
+    private userCountTransactionsGql: UserCountTransactionsGQL,
+    private userTransactionGql: UserTransactionGQL,
     private adminUsersGql: AdminUsersGQL,
     private adminUserGql: AdminUserGQL,
     private adminCreateUserGql: AdminCreateUserGQL,
@@ -1506,6 +1817,7 @@ export class ApolloAngularSDK {
     private userWalletsGql: UserWalletsGQL,
     private userCountWalletsGql: UserCountWalletsGQL,
     private userWalletGql: UserWalletGQL,
+    private userWalletTransactionsGql: UserWalletTransactionsGQL,
     private userCreateWalletGql: UserCreateWalletGQL,
     private userUpdateWalletGql: UserUpdateWalletGQL,
     private userDeleteWalletGql: UserDeleteWalletGQL,
@@ -1648,6 +1960,90 @@ export class ApolloAngularSDK {
     return this.intercomSubGql.subscribe(variables, options)
   }
 
+  adminTransactions(
+    variables?: AdminTransactionsQueryVariables,
+    options?: QueryOptionsAlone<AdminTransactionsQueryVariables>,
+  ) {
+    return this.adminTransactionsGql.fetch(variables, options)
+  }
+
+  adminTransactionsWatch(
+    variables?: AdminTransactionsQueryVariables,
+    options?: WatchQueryOptionsAlone<AdminTransactionsQueryVariables>,
+  ) {
+    return this.adminTransactionsGql.watch(variables, options)
+  }
+
+  adminCountTransactions(
+    variables?: AdminCountTransactionsQueryVariables,
+    options?: QueryOptionsAlone<AdminCountTransactionsQueryVariables>,
+  ) {
+    return this.adminCountTransactionsGql.fetch(variables, options)
+  }
+
+  adminCountTransactionsWatch(
+    variables?: AdminCountTransactionsQueryVariables,
+    options?: WatchQueryOptionsAlone<AdminCountTransactionsQueryVariables>,
+  ) {
+    return this.adminCountTransactionsGql.watch(variables, options)
+  }
+
+  adminTransaction(
+    variables: AdminTransactionQueryVariables,
+    options?: QueryOptionsAlone<AdminTransactionQueryVariables>,
+  ) {
+    return this.adminTransactionGql.fetch(variables, options)
+  }
+
+  adminTransactionWatch(
+    variables: AdminTransactionQueryVariables,
+    options?: WatchQueryOptionsAlone<AdminTransactionQueryVariables>,
+  ) {
+    return this.adminTransactionGql.watch(variables, options)
+  }
+
+  userTransactions(
+    variables?: UserTransactionsQueryVariables,
+    options?: QueryOptionsAlone<UserTransactionsQueryVariables>,
+  ) {
+    return this.userTransactionsGql.fetch(variables, options)
+  }
+
+  userTransactionsWatch(
+    variables?: UserTransactionsQueryVariables,
+    options?: WatchQueryOptionsAlone<UserTransactionsQueryVariables>,
+  ) {
+    return this.userTransactionsGql.watch(variables, options)
+  }
+
+  userCountTransactions(
+    variables?: UserCountTransactionsQueryVariables,
+    options?: QueryOptionsAlone<UserCountTransactionsQueryVariables>,
+  ) {
+    return this.userCountTransactionsGql.fetch(variables, options)
+  }
+
+  userCountTransactionsWatch(
+    variables?: UserCountTransactionsQueryVariables,
+    options?: WatchQueryOptionsAlone<UserCountTransactionsQueryVariables>,
+  ) {
+    return this.userCountTransactionsGql.watch(variables, options)
+  }
+
+  userTransaction(
+    variables: UserTransactionQueryVariables,
+    options?: QueryOptionsAlone<UserTransactionQueryVariables>,
+  ) {
+    return this.userTransactionGql.fetch(variables, options)
+  }
+
+  userTransactionWatch(
+    variables: UserTransactionQueryVariables,
+    options?: WatchQueryOptionsAlone<UserTransactionQueryVariables>,
+  ) {
+    return this.userTransactionGql.watch(variables, options)
+  }
+
   adminUsers(variables?: AdminUsersQueryVariables, options?: QueryOptionsAlone<AdminUsersQueryVariables>) {
     return this.adminUsersGql.fetch(variables, options)
   }
@@ -1774,6 +2170,20 @@ export class ApolloAngularSDK {
 
   userWalletWatch(variables: UserWalletQueryVariables, options?: WatchQueryOptionsAlone<UserWalletQueryVariables>) {
     return this.userWalletGql.watch(variables, options)
+  }
+
+  userWalletTransactions(
+    variables: UserWalletTransactionsQueryVariables,
+    options?: QueryOptionsAlone<UserWalletTransactionsQueryVariables>,
+  ) {
+    return this.userWalletTransactionsGql.fetch(variables, options)
+  }
+
+  userWalletTransactionsWatch(
+    variables: UserWalletTransactionsQueryVariables,
+    options?: WatchQueryOptionsAlone<UserWalletTransactionsQueryVariables>,
+  ) {
+    return this.userWalletTransactionsGql.watch(variables, options)
   }
 
   userCreateWallet(

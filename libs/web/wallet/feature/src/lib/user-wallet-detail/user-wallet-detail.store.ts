@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { Wallet } from '@kin-nxpm-stack/web/core/data-access'
+import { Transaction, TransactionType, Wallet, WebCoreDataAccessService } from '@kin-nxpm-stack/web/core/data-access'
 import { WebWalletDataAccessStore } from '@kin-nxpm-stack/web/wallet/data-access'
 import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-client'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
@@ -11,32 +11,41 @@ interface UserWalletDetailState {
   error?: string
   loading?: boolean
   balances?: KinAccountBalance[]
+  transactions?: Transaction[]
   wallet?: Wallet
 }
 
 @Injectable()
 export class UserWalletDetailStore extends ComponentStore<UserWalletDetailState> {
-  constructor(private readonly walletStore: WebWalletDataAccessStore, route: ActivatedRoute) {
+  constructor(
+    private readonly data: WebCoreDataAccessService,
+    private readonly walletStore: WebWalletDataAccessStore,
+    route: ActivatedRoute,
+  ) {
     super({})
     this.loadItemEffect(route.params.pipe(pluck('walletId')))
     this.loadBalancesEffect(this.wallet$)
+    this.loadTransactionsEffect(this.wallet$)
   }
 
   readonly wallets$ = this.select(this.walletStore.vm$, (s) => s.wallets)
   readonly error$ = this.select((s) => s.error)
   readonly balances$ = this.select((s) => s.balances)
+  readonly transactions$ = this.select((s) => s.transactions)
   readonly wallet$ = this.select((s) => s.wallet)
   readonly loading$ = this.select((s) => s.loading)
   readonly vm$ = this.select(
     this.error$,
     this.loading$,
     this.balances$,
+    this.transactions$,
     this.wallet$,
-    (error, loading, balances, wallet) => ({
+    (error, loading, balances, transactions, wallet) => ({
       empty: !loading && !wallet,
       error,
       loading,
       balances,
+      transactions,
       wallet,
     }),
   )
@@ -60,6 +69,28 @@ export class UserWalletDetailStore extends ComponentStore<UserWalletDetailState>
     ),
   )
 
+  readonly loadTransactionsEffect = this.effect<Wallet>((wallet$) =>
+    wallet$.pipe(
+      filter((wallet) => !!wallet),
+      tap(() => console.log('Loading Balance')),
+      switchMap((wallet) =>
+        this.data.userWalletTransactions({ walletId: wallet.id }).pipe(
+          tapResponse(
+            (res) => {
+              const transactions = res.data.transactions.map((transaction) => {
+                return {
+                  ...transaction,
+                  type: transaction.sender === wallet.publicKey ? TransactionType.Outgoing : TransactionType.Incoming,
+                }
+              })
+              this.patchState({ transactions })
+            },
+            (error) => console.error(error),
+          ),
+        ),
+      ),
+    ),
+  )
   readonly loadBalancesEffect = this.effect<Wallet>((wallet$) =>
     wallet$.pipe(
       filter((wallet) => !!wallet),
@@ -106,6 +137,7 @@ export class UserWalletDetailStore extends ComponentStore<UserWalletDetailState>
       tap((wallet: Wallet) => {
         this.loadItemEffect(wallet.id)
         this.loadBalancesEffect(wallet)
+        this.loadTransactionsEffect(wallet)
       }),
     ),
   )

@@ -37,6 +37,12 @@ input AdminCreateWalletInput {
   publicKey: String!
 }
 
+input AdminListTransactionInput {
+  limit: Int = 10
+  skip: Int = 0
+  txid: String
+}
+
 input AdminListWalletInput {
   limit: Int = 10
   name: String
@@ -140,16 +146,23 @@ type Query {
   accountEmails: [Email!]
   accountProfile: User
   accountUsernameAvailable(username: String!): Boolean
+  adminCountTransactions(input: AdminListTransactionInput): CorePaging
   adminCountUsers(paging: CorePagingInput): CorePaging
   adminCountWallets(input: AdminListWalletInput): CorePaging
+  adminTransaction(transactionId: String!): Transaction
+  adminTransactions(input: AdminListTransactionInput): [Transaction!]
   adminUser(userId: String!): User
   adminUsers(paging: CorePagingInput): [User!]
   adminWallet(walletId: String!): Wallet
   adminWallets(input: AdminListWalletInput): [Wallet!]
   me: User
   uptime: Float
+  userCountTransactions(input: UserListTransactionInput): CorePaging
   userCountWallets(input: UserListWalletInput): CorePaging
+  userTransaction(transactionId: String!): Transaction
+  userTransactions(input: UserListTransactionInput): [Transaction!]
   userWallet(walletId: String!): Wallet
+  userWalletTransactions(walletId: String!): [Transaction!]
   userWallets(input: UserListWalletInput): [Wallet!]
 }
 
@@ -170,6 +183,25 @@ enum Role {
 
 type Subscription {
   intercomSub(scope: String, type: String): IntercomMessage
+}
+
+type Transaction {
+  amount: String
+  createdAt: DateTime
+  destination: String
+  id: String
+  invoice: JSON
+  memo: String
+  network: Network
+  sender: String
+  txid: String
+  type: TransactionType
+  updatedAt: DateTime
+}
+
+enum TransactionType {
+  Incoming
+  Outgoing
 }
 
 type User {
@@ -193,6 +225,12 @@ input UserCreateWalletInput {
   name: String!
   network: Network!
   publicKey: String!
+}
+
+input UserListTransactionInput {
+  limit: Int = 10
+  skip: Int = 0
+  txid: String
 }
 
 input UserListWalletInput {

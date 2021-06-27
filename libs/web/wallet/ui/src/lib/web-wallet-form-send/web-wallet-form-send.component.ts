@@ -16,7 +16,6 @@ import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-clien
         <ui-form [fields]="fields" (submitForm)="submit($event)">
           <ui-button type="submit" label="Send Kin"></ui-button>
         </ui-form>
-        <pre>{{ balance | json }}</pre>
       </div>
     </ng-container>
   `,
