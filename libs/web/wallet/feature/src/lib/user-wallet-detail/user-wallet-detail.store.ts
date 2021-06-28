@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Transaction, TransactionType, Wallet, WebCoreDataAccessService } from '@kin-nxpm-stack/web/core/data-access'
-import { WebWalletDataAccessStore } from '@kin-nxpm-stack/web/wallet/data-access'
+import { SendKinInput, WebWalletDataAccessStore } from '@kin-nxpm-stack/web/wallet/data-access'
 import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-client'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
 import { defer } from 'rxjs'
@@ -142,5 +142,30 @@ export class UserWalletDetailStore extends ComponentStore<UserWalletDetailState>
     ),
   )
 
-  readonly sendKinEffect = this.walletStore.sendKinEffect
+  readonly sendKinEffect = this.effect<SendKinInput>((input$) =>
+    input$.pipe(
+      switchMap(({ wallet, balance, amount, destination }) =>
+        defer(() => {
+          const secret = this.walletStore?.ls.get(wallet.publicKey)
+          return this.walletStore?.kin(wallet.network).submitPayment({
+            secret,
+            tokenAccount: balance.account,
+            amount,
+            destination,
+          })
+        }).pipe(
+          tapResponse(
+            ([tx, err]) => {
+              console.log('err', err)
+              console.log('tx', tx)
+              this.refreshEffect(wallet)
+            },
+            (err) => {
+              console.log(err)
+            },
+          ),
+        ),
+      ),
+    ),
+  )
 }

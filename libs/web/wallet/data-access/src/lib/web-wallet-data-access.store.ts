@@ -95,35 +95,6 @@ export class WebWalletDataAccessStore extends ComponentStore<WebWalletDataAccess
     ),
   )
 
-  readonly sendKinEffect = this.effect<SendKinInput>((input$) =>
-    input$.pipe(
-      tap((input) => {
-        console.log('input', input)
-      }),
-      switchMap(({ wallet, balance, amount, destination }) =>
-        defer(() => {
-          const secret = this.ls.get(wallet.publicKey)
-          return this.kin(wallet.network).submitPayment({
-            secret,
-            tokenAccount: balance.account,
-            amount,
-            destination,
-          })
-        }).pipe(
-          tapResponse(
-            ([tx, err]) => {
-              console.log('err', err)
-              console.log('tx', tx)
-            },
-            (err) => {
-              console.log(err)
-            },
-          ),
-        ),
-      ),
-    ),
-  )
-
   kin(network: Network): KinClient {
     return this.networks[network]
   }

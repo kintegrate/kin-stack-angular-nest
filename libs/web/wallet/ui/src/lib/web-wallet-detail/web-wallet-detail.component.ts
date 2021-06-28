@@ -17,7 +17,7 @@ import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-clien
           ></ui-button>
         </div>
         <div class="p-4 shadow rounded-lg bg-gray-100 dark:bg-gray-800">
-          <div class="flex justify-between items-center p-4 shadow rounded-lg bg-gray-100 dark:bg-gray-800">
+          <div class="flex justify-between items-center">
             <a [routerLink]="wallet.id">
               <code>{{ wallet.publicKey }}</code>
             </a>

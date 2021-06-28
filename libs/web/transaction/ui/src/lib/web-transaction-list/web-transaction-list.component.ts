@@ -12,7 +12,8 @@ import { Transaction } from '@kin-nxpm-stack/shared/util/sdk'
               {{ transaction.type }}
             </span>
             <div class="flex flex-col">
-              <code class="text-sm">{{ transaction.destination }}</code>
+              <code class="text-sm">From: {{ transaction.sender }}</code>
+              <code class="text-sm">To: {{ transaction.destination }}</code>
               <code class="text-xs text-gray-500">{{ transaction.txid.substr(0, 20) }}...</code>
             </div>
           </div>
