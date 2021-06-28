@@ -8,6 +8,7 @@ import { WebLayoutStore } from './web-layout.store'
         <div>
           <layout-header
             [logo]="vm?.layout?.logo"
+            [total]="vm?.total"
             [links]="vm?.links?.main"
             [user]="vm?.user"
             [profileLinks]="vm.links?.profile"
@@ -23,7 +24,6 @@ import { WebLayoutStore } from './web-layout.store'
       </div>
     </ng-container>
   `,
-  providers: [WebLayoutStore],
 })
 export class WebLayoutComponent {
   vm$ = this.layoutStore.vm$

@@ -19,10 +19,11 @@ import { UserWalletDetailStore } from './user-wallet-detail.store'
       <ng-container *ngIf="!vm.empty">
         <web-wallet-detail
           (airdrop)="airdrop($event)"
+          (create)="create($event)"
           (refresh)="refresh($event)"
           (send)="send($event)"
           [wallet]="vm.wallet"
-          [balances]="vm.balances"
+          [accounts]="vm.balances"
           [transactions]="vm.transactions"
         ></web-wallet-detail>
       </ng-container>
@@ -35,7 +36,14 @@ export class UserWalletDetailComponent {
   constructor(private readonly store: UserWalletDetailStore) {}
 
   airdrop(wallet: Wallet) {
-    this.store.airdropEffect(wallet)
+    const amount = prompt(`Airdrop amount?`, '50000')
+    if (amount) {
+      this.store.airdropEffect([wallet, amount])
+    }
+  }
+
+  create(wallet: Wallet) {
+    this.store.createEffect(wallet)
   }
 
   refresh(wallet: Wallet) {

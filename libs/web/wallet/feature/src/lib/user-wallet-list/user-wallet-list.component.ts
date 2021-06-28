@@ -9,7 +9,10 @@ import { UserWalletListStore } from './user-wallet-list.store'
   template: `
     <ng-container *ngIf="vm$ | async as vm">
       <ui-loader [loading]="vm.loading"></ui-loader>
-      <web-wallet-list [wallets]="vm.wallets"></web-wallet-list>
+      <div class="text-right p-4 text-2xl">
+        <code>Total: {{ vm.total }} KIN</code>
+      </div>
+      <web-wallet-list [accounts]="vm.accounts" [wallets]="vm.wallets"></web-wallet-list>
     </ng-container>
   `,
   providers: [UserWalletListStore],

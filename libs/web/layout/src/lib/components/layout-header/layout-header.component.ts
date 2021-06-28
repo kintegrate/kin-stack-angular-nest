@@ -29,6 +29,10 @@ import { Component, Input } from '@angular/core'
             </div>
             <div class="hidden md:block">
               <div class="ml-4 flex items-center md:ml-6">
+                <a routerLink="/wallets" class="flex space-x-2" *ngIf="total">
+                  <code>{{ total }}</code>
+                  <code class="text-semibold uppercase">Kin</code>
+                </a>
                 <a
                   *ngIf="notificationsLink"
                   [routerLink]="notificationsLink"
@@ -220,6 +224,7 @@ export class LayoutHeaderComponent {
   showMobileMenu = false
   @Input() notificationsLink?: string
   @Input() user?: User
+  @Input() total?: number
   @Input() links: { label: string; route: string }[] = []
   @Input() profileLinks: { label: string; route: string }[] = []
   @Input() logo: string

@@ -13,9 +13,19 @@ export class UserWalletListStore extends ComponentStore<UserWalletListState> {
   }
 
   readonly loading$ = this.select(this.walletStore.vm$, (s) => s.loading)
+  readonly accounts$ = this.select(this.walletStore.vm$, (s) => s.accounts)
+  readonly total$ = this.select(this.walletStore.vm$, (s) => s.total)
   readonly wallets$ = this.select(this.walletStore.vm$, (s) => s.wallets)
-  readonly vm$ = this.select(this.loading$, this.wallets$, (loading, wallets) => ({
-    loading,
-    wallets,
-  }))
+  readonly vm$ = this.select(
+    this.loading$,
+    this.total$,
+    this.accounts$,
+    this.wallets$,
+    (loading, total, accounts, wallets) => ({
+      loading,
+      total,
+      accounts,
+      wallets,
+    }),
+  )
 }

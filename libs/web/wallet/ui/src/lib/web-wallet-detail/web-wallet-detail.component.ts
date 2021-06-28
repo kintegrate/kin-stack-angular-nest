@@ -21,30 +21,37 @@ import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-clien
             <a [routerLink]="wallet.id">
               <code>{{ wallet.publicKey }}</code>
             </a>
-            <code>{{ wallet.network }}</code>
+            <div class="flex space-x-2">
+              <ui-icon icon="eye"></ui-icon>
+              <code>{{ wallet.network }}</code>
+            </div>
           </div>
         </div>
-        <div class="flex flex-col space-y-3">
-          <ng-container *ngFor="let balance of balances">
-            <web-wallet-form-send
-              (send)="send.emit($event)"
-              [balance]="balance"
-              [wallet]="wallet"
-            ></web-wallet-form-send>
-          </ng-container>
-        </div>
-        <div class="flex flex-col space-y-3">
+        <ng-container *ngIf="!accounts?.length">
+          <ui-button label="Create Account" (handler)="create.emit(wallet)"></ui-button>
+        </ng-container>
+        <ng-container *ngIf="accounts?.length">
+          <h3 class="text-lg leading-6 font-medium text-gray-400">Accounts</h3>
+          <web-wallet-account-list [accounts]="accounts"></web-wallet-account-list>
+          <h3 class="text-lg leading-6 font-medium text-gray-400">Send KIN</h3>
+          <web-wallet-form-send
+            (send)="send.emit($event)"
+            [wallet]="wallet"
+            [accounts]="accounts"
+          ></web-wallet-form-send>
+          <h3 class="text-lg leading-6 font-medium text-gray-400">Transactions</h3>
           <web-transaction-list [transactions]="transactions"></web-transaction-list>
-        </div>
+        </ng-container>
       </div>
     </ng-container>
   `,
 })
 export class WebWalletDetailComponent {
-  @Input() balances: KinAccountBalance[]
+  @Input() accounts: KinAccountBalance[]
   @Input() transactions: Transaction[]
   @Input() wallet: Wallet
   @Output() airdrop = new EventEmitter<Wallet>()
+  @Output() create = new EventEmitter<Wallet>()
   @Output() refresh = new EventEmitter<Wallet>()
   @Output() send = new EventEmitter<SendKinInput>()
 }

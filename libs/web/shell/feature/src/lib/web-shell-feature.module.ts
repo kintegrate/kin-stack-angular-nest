@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { IsAdminGuard, IsLoggedInGuard, WebAuthDataAccessModule } from '@kin-nxpm-stack/web/auth/data-access'
-import { WebLayoutComponent } from '@kin-nxpm-stack/web/layout'
+import { WebLayoutComponent, WebLayoutModule } from '@kin-nxpm-stack/web/layout'
+import { WebWalletDataAccessStore } from '@kin-nxpm-stack/web/wallet/data-access'
 
 const routes: Routes = [
   {
@@ -56,6 +57,9 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
     WebAuthDataAccessModule,
+    WebLayoutModule,
   ],
 })
-export class WebShellFeatureModule {}
+export class WebShellFeatureModule {
+  constructor(private readonly wallet: WebWalletDataAccessStore) {}
+}

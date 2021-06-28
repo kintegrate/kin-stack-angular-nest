@@ -112,14 +112,14 @@ export class UserWalletDetailStore extends ComponentStore<UserWalletDetailState>
     ),
   )
 
-  readonly airdropEffect = this.effect<Wallet>((wallet$) =>
+  readonly airdropEffect = this.effect<[Wallet, string]>((wallet$) =>
     wallet$.pipe(
-      switchMap((wallet: Wallet) => {
-        console.log('airdropEffect', wallet)
-        return defer(() => this.walletStore.kin(wallet.network).requestAirdrop(wallet.publicKey, '10000')).pipe(
+      switchMap(([wallet, amount]: [Wallet, string]) => {
+        return defer(() => this.walletStore.kin(wallet.network).requestAirdrop(wallet.publicKey, amount)).pipe(
           tapResponse(
             ([balances, err]) => {
               this.loadBalancesEffect(wallet)
+              this.walletStore.updateWalletBalances()
               console.log('balances', balances)
               console.log('err', err)
             },
@@ -128,6 +128,14 @@ export class UserWalletDetailStore extends ComponentStore<UserWalletDetailState>
             },
           ),
         )
+      }),
+    ),
+  )
+
+  readonly createEffect = this.effect<Wallet>((wallet$) =>
+    wallet$.pipe(
+      tap((wallet) => {
+        this.walletStore.createAccountEffect(wallet)
       }),
     ),
   )
@@ -144,12 +152,12 @@ export class UserWalletDetailStore extends ComponentStore<UserWalletDetailState>
 
   readonly sendKinEffect = this.effect<SendKinInput>((input$) =>
     input$.pipe(
-      switchMap(({ wallet, balance, amount, destination }) =>
+      switchMap(({ wallet, account, amount, destination }) =>
         defer(() => {
           const secret = this.walletStore?.ls.get(wallet.publicKey)
           return this.walletStore?.kin(wallet.network).submitPayment({
             secret,
-            tokenAccount: balance.account,
+            tokenAccount: account,
             amount,
             destination,
           })
