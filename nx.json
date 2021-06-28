@@ -161,6 +161,15 @@
     "web-admin-ui": {
       "tags": ["scope:web", "type:ui"]
     },
+    "web-app-data-access": {
+      "tags": ["scope:web", "type:data-access"]
+    },
+    "web-app-feature": {
+      "tags": ["scope:web", "type:feature"]
+    },
+    "web-app-ui": {
+      "tags": ["scope:web", "type:feature"]
+    },
     "web-assets": {
       "tags": ["scope:web", "type:assets"]
     },

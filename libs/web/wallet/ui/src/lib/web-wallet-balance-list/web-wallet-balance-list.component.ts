@@ -14,7 +14,7 @@ import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-clien
         <div class="flex flex-col space-y-3 p-4 shadow rounded-lg bg-gray-100 dark:bg-gray-800">
           <div class="flex justify-between items-center">
             <code>{{ account.account }}</code>
-            <code>{{ account.balance }} KIN</code>
+            <code>{{ account.balance | currency: '':'':'1.0-0' }} KIN</code>
           </div>
         </div>
       </ng-container>

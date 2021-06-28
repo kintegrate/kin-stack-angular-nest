@@ -20,7 +20,7 @@ import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-clien
                 <ng-container *ngFor="let account of accounts[wallet.publicKey]">
                   <div class="text-sm text-gray-500 flex justify-between items-center py-2">
                     <code>{{ account.account }}</code>
-                    <code>{{ account.balance }} Kin</code>
+                    <code>{{ account.balance | currency: '':'':'1.0-0' }} KIN</code>
                   </div>
                 </ng-container>
               </div>

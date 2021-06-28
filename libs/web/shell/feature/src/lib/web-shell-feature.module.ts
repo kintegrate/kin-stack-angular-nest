@@ -23,6 +23,10 @@ const routes: Routes = [
         loadChildren: () => import('@kin-nxpm-stack/web/wallet/feature').then((m) => m.WebWalletFeatureModule),
       },
       {
+        path: 'apps',
+        loadChildren: () => import('@kin-nxpm-stack/web/app/feature').then((m) => m.WebAppFeatureModule),
+      },
+      {
         path: 'about',
         loadChildren: () => import('@kin-nxpm-stack/web/about/feature').then((m) => m.WebAboutFeatureModule),
       },

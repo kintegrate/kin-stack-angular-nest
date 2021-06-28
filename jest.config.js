@@ -69,5 +69,8 @@ module.exports = {
     '<rootDir>/libs/api/transaction/feature',
     '<rootDir>/libs/web/transaction/feature',
     '<rootDir>/libs/web/transaction/ui',
+    '<rootDir>/libs/web/app/data-access',
+    '<rootDir>/libs/web/app/feature',
+    '<rootDir>/libs/web/app/ui',
   ],
 }

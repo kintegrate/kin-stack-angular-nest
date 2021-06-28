@@ -133,6 +133,7 @@ export class WebWalletDataAccessStore extends ComponentStore<WebWalletDataAccess
 
   readonly updateWalletBalances = this.effect(($) =>
     $.pipe(
+      tap(() => this.patchState({ total: 0 })),
       withLatestFrom(this.wallets$),
       tap(([, wallets]) => wallets.map((wallet) => this.updateWalletBalance(wallet))),
     ),

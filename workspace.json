@@ -1268,6 +1268,72 @@
         }
       }
     },
+    "web-app-data-access": {
+      "projectType": "library",
+      "root": "libs/web/app/data-access",
+      "sourceRoot": "libs/web/app/data-access/src",
+      "prefix": "kin-nxpm-stack",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/web/app/data-access/src/**/*.ts", "libs/web/app/data-access/src/**/*.html"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/app/data-access"],
+          "options": {
+            "jestConfig": "libs/web/app/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "web-app-feature": {
+      "projectType": "library",
+      "root": "libs/web/app/feature",
+      "sourceRoot": "libs/web/app/feature/src",
+      "prefix": "kin-nxpm-stack",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/web/app/feature/src/**/*.ts", "libs/web/app/feature/src/**/*.html"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/app/feature"],
+          "options": {
+            "jestConfig": "libs/web/app/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "web-app-ui": {
+      "projectType": "library",
+      "root": "libs/web/app/ui",
+      "sourceRoot": "libs/web/app/ui/src",
+      "prefix": "kin-nxpm-stack",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/web/app/ui/src/**/*.ts", "libs/web/app/ui/src/**/*.html"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/app/ui"],
+          "options": {
+            "jestConfig": "libs/web/app/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "web-assets": {
       "projectType": "library",
       "root": "libs/web/assets",

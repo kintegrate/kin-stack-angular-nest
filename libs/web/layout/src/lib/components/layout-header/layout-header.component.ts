@@ -30,7 +30,7 @@ import { Component, Input } from '@angular/core'
             <div class="hidden md:block">
               <div class="ml-4 flex items-center md:ml-6">
                 <a routerLink="/wallets" class="flex space-x-2" *ngIf="total">
-                  <code>{{ total }}</code>
+                  <code>{{ total | currency: '':'':'1.0-0' }}</code>
                   <code class="text-semibold uppercase">Kin</code>
                 </a>
                 <a
