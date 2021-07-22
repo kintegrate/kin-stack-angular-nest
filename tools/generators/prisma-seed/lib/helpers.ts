@@ -13,6 +13,6 @@ export function createUser(
     emails: { create: { email, primary: true } },
     role,
     password,
-    avatarUrl: 'https://www.gravatar.com/avatar?d=mp',
+    avatarUrl: 'https://avatars.githubusercontent.com/u/54114845',
   }
 }

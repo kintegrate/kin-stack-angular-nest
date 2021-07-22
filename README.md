@@ -1,8 +1,8 @@
-# Web
+# kin-nxpm-stack
 
 This project was generated using [@nxpm/stack](https://github.com/nxpm/stack) which is based on [Nx](https://nx.dev).
 
-<p align="center"><img src="https://avatars.githubusercontent.com/u/65322676?v=4" width="450"></p>
+<p align="center"><img src="https://avatars.githubusercontent.com/u/54114845?v=4" width="450"></p>
 
 # Setup
 
